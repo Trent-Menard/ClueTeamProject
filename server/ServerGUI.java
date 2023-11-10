@@ -7,13 +7,12 @@ import java.io.IOException;
 
 import javax.swing.*;
 
-import server.GameServer;
-
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.io.PrintStream;
 
 import ocsf.server.AbstractServer;
+import serverCommunication.GameServer;
 
 
 public class ServerGUI extends JFrame
@@ -111,9 +110,9 @@ public class ServerGUI extends JFrame
     this.setVisible(true);
     
     // Set up the chat server object.
-  //  server = new ChatServer();
-   // server.setLog(log);
-  //  server.setStatus(status);
+  server = new GameServer();
+  server.setLog(log);
+  server.setStatus(status);
 	}
 	
 	// Main function that creates a server GUI when the program is started.
@@ -157,11 +156,11 @@ public class ServerGUI extends JFrame
         // Otherwise, tell the server to start listening with the user's settings.
         else
         {
-         // server.setPort(Integer.parseInt(textFields[0].getText()));
-      //    server.setTimeout(Integer.parseInt(textFields[1].getText()));
+          server.setPort(Integer.parseInt(textFields[0].getText()));
+          server.setTimeout(Integer.parseInt(textFields[1].getText()));
           try
           {
-         //   server.listen();
+            server.listen();
           }
           catch (IOException e1)
           {
