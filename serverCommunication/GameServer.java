@@ -77,7 +77,7 @@ public class GameServer extends AbstractServer
   public void handleMessageFromClient(Object arg0, ConnectionToClient arg1)
   {
     
-      log.append("Message Received");
+      log.append("Message Received\n");
   }
 
   // Method that handles listening exceptions by displaying exception information.
