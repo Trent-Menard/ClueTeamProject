@@ -1,3 +1,4 @@
+package game;
 
 import javax.swing.*;
 import javax.swing.border.LineBorder;
