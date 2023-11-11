@@ -10,3 +10,7 @@
 /LoginControl.class
 /LoginData.class
 /LoginPanel.class
+/WaitingRoomPanel.class
+/WaitingRoomControl.class
+/WaitingRoomData.class
+/User.class

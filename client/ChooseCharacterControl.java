@@ -1,16 +1,16 @@
 package client;
 
 import java.awt.CardLayout;
-import java.awt.event.ActionEvent;
+import java.awt.event.*;
 import java.io.IOException;
-
 import javax.swing.*;
-import clientCommunication.GameClient;
+import clientCommunication.*;
 
-public class ChooseCharacterControl {
+public class ChooseCharacterControl implements ActionListener {
 	  // Private data fields for the container and chat client.
 	  private JPanel container;
 	  private GameClient client;
+	  private JComboBox myBox;
 	  
 	  ChooseCharacterControl(JPanel container, GameClient client){
 		  this.container = container;
@@ -21,10 +21,28 @@ public class ChooseCharacterControl {
 	  {
 	    // Get the name of the button clicked.
 	    String command = ae.getActionCommand();
-	    
-	    
+	    if(command.equals("Cancel")) {
+	    	CardLayout cardLayout = (CardLayout)container.getLayout();
+	        cardLayout.show(container, "1");
+	    } else if(command.equals("Confirm")) {
+	    	CardLayout cardLayout = (CardLayout)container.getLayout();
+	        cardLayout.show(container, "5");
+	        
+	        String myChar = myBox.getSelectedItem().toString();
+	        ChooseCharacterData data = new ChooseCharacterData(myChar);
+	        try {
+				client.sendToServer(data);
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+	    } 
+
 	    
 	  }
+
+	public void setMyComboBox(JComboBox box) {
+		myBox = box;
+	}
 
 	  
 }
