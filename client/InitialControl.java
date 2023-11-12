@@ -7,10 +7,8 @@ import clientCommunication.*;
 
 public class InitialControl implements ActionListener
 {
-  // Private data field for storing the container.
-  private JPanel container;
+  private final JPanel container;
   private GameClient client;
-  // Constructor for the initial controller.
   public InitialControl(JPanel container, GameClient client)
   {
     this.container = container;

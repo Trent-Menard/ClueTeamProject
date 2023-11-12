@@ -1,8 +1,7 @@
 package database;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
+import java.sql.*;
+import java.util.ArrayList;
 
 public class Database {
     private final Connection connection;
@@ -12,7 +11,73 @@ public class Database {
                     "jdbc:mysql://localhost:3306/student_space",
                     "student",
                     "hello");
-        } catch (SQLException e) { throw new RuntimeException(e); }
+        } catch (SQLException e) {
+            System.err.println("[Error:] Couldn't connect to Database (is it online?).\n");
+            throw new RuntimeException(e); }
+    }
+
+    public ArrayList<String> query(String query) {
+
+        ArrayList<String> queryResult = new ArrayList<>();
+
+        try(Statement statement = this.connection.createStatement()) {
+
+            ResultSet resultSet = statement.executeQuery(query);
+            ResultSetMetaData metaData = resultSet.getMetaData();
+            int columnCount = metaData.getColumnCount();
+
+            while (resultSet.next()) {
+                for (int i = 1; i <= columnCount; i++) {
+                    queryResult.add(resultSet.getString(i));
+                    if (i < columnCount)
+                        queryResult.add(",");
+                }
+            }
+
+            if (queryResult.isEmpty())
+                return null;
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return null;
+        }
+
+        return queryResult;
+    }
+
+    public void executeDML(String dml) throws SQLException
+    {
+        Statement stmt = this.connection.createStatement();
+        stmt.execute(dml);
+    }
+
+    public boolean checkUserExists(String username) {
+        ArrayList<String> queryUsername = query("SELECT username FROM user WHERE username='" + username + "'");
+        return queryUsername != null;
+    }
+
+    public boolean verifyUser(String username, String password) {
+        ArrayList<String> queryUsername = query("SELECT username FROM user WHERE username='" + username + "'");
+
+        if (queryUsername != null) {
+            // Username is PK so can only be 1 entry.
+            String queryUsernameResult = queryUsername.get(0);
+
+            // Password always Non-Null (can't have Username w/o Password).
+            String actualPassword = query("SELECT password FROM user WHERE username='" + username + "'").get(0);
+
+            return username.equalsIgnoreCase(queryUsernameResult) && password.equals(actualPassword);
+        }
+
+        return false;
+    }
+
+    public void addUser(String username, String password) {
+        try {
+            executeDML("INSERT INTO user VALUES('" + username + "','" + password + "')");
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     public static void main(String[] args) {

@@ -7,9 +7,8 @@ import javax.swing.*;
 import clientCommunication.*;
 
 public class WaitingRoomControl implements ActionListener {
-	// Private data fields for the container and chat client.
 	private JPanel container;
-	private GameClient client;
+	private final GameClient client;
 
 	WaitingRoomControl(JPanel container, GameClient client){
 		this.container = container;
@@ -28,5 +27,4 @@ public class WaitingRoomControl implements ActionListener {
 			}
 		}
 	}
-
 }

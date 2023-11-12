@@ -6,25 +6,19 @@ import java.awt.event.*;
 
 public class CreateAccountPanel extends JPanel
 {
-	// Private data fields for the important GUI components.
 	private JTextField usernameField;
 	private JPasswordField passwordField;
 	private JPasswordField passwordVerifyField;
 	private JLabel errorLabel;
 
-	// Getter for the text in the username field.
 	public String getUsername()
 	{
 		return usernameField.getText();
 	}
-
-	// Getter for the text in the password field.
 	public String getPassword()
 	{
 		return new String(passwordField.getPassword());
 	}
-
-	// Getter for the text in the second password field.
 	public String getPasswordVerify()
 	{
 		return new String(passwordVerifyField.getPassword());
@@ -36,7 +30,6 @@ public class CreateAccountPanel extends JPanel
 		errorLabel.setText(error);
 	}
 
-	// Constructor for the create account panel.
 	CreateAccountPanel(CreateAccountControl cac) {
 		// Create the controller and set it in the chat client.
 		//CreateAccountControl controller = new CreateAccountControl(container, client);

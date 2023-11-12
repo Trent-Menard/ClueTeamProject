@@ -4,15 +4,16 @@ import java.awt.*;
 import javax.swing.*;
 import java.awt.event.*;
 import java.io.IOException;
+import java.util.Objects;
+
 import clientCommunication.*;
+import game.Player;
 
 public class CreateAccountControl implements ActionListener
 {
-  // Private data fields for the container and chat client.
-  private JPanel container;
-  private GameClient client;
+  private final JPanel container;
+  private final GameClient client;
   
-  // Constructor for the create account controller.
   public CreateAccountControl(JPanel container, GameClient client)
   {
     this.container = container;
@@ -26,14 +27,14 @@ public class CreateAccountControl implements ActionListener
     String command = ae.getActionCommand();
 
     // The Cancel button takes the user back to the initial panel.
-    if (command == "Cancel")
+    if (Objects.equals(command, "Cancel"))
     {
       CardLayout cardLayout = (CardLayout)container.getLayout();
       cardLayout.show(container, "1");
     }
 
     // The Submit button creates a new account.
-    else if (command == "Submit")
+    else if (Objects.equals(command, "Submit"))
     {
       // Get the text the user entered in the three fields.
       CreateAccountPanel createAccountPanel = (CreateAccountPanel)container.getComponent(2);
@@ -76,7 +77,8 @@ public class CreateAccountControl implements ActionListener
   {
     CreateAccountPanel createAccountPanel = (CreateAccountPanel)container.getComponent(2);
     ClientGUI clientGUI = (ClientGUI)SwingUtilities.getWindowAncestor(createAccountPanel);
-    clientGUI.setUser(new User(createAccountPanel.getUsername(), createAccountPanel.getPassword()));
+//    clientGUI.setUser(new User(createAccountPanel.getUsername(), createAccountPanel.getPassword()));
+    clientGUI.setPlayer(new Player(createAccountPanel.getUsername(), createAccountPanel.getPassword()));
     CardLayout cardLayout = (CardLayout)container.getLayout();
     cardLayout.show(container, "4");
   }
