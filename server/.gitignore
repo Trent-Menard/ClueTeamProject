@@ -1,3 +1,6 @@
 /ServerGUI.class
 /GameServer.class
 /ServerGUI$EventHandler.class
+/DeterminePlayerOrder.class
+/DiceManager.class
+/Deck.class
