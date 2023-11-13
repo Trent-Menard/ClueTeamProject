@@ -37,8 +37,8 @@ public class ClientGUI extends JFrame {
         WaitingRoomControl wrc = new WaitingRoomControl(container, client);
 
         // Set the client info
-//		client.setLoginControl(lc);
-//		client.setCreateAccountControl(cac);
+		client.setLoginControl(lc);
+		client.setCreateAccountControl(cac);
 //		client.setChooseCharacterControl(ccc);
 //		client.setWaitingRoom(wrc);
 
