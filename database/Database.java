@@ -52,19 +52,19 @@ public class Database {
     }
 
     public boolean checkUserExists(String username) {
-        ArrayList<String> queryUsername = query("SELECT username FROM user WHERE username='" + username + "'");
+        ArrayList<String> queryUsername = query("SELECT username FROM clueaccounts WHERE username='" + username + "'");
         return queryUsername != null;
     }
 
     public boolean verifyUser(String username, String password) {
-        ArrayList<String> queryUsername = query("SELECT username FROM user WHERE username='" + username + "'");
+        ArrayList<String> queryUsername = query("SELECT username FROM clueaccounts WHERE username='" + username + "'");
 
         if (queryUsername != null) {
             // Username is PK so can only be 1 entry.
             String queryUsernameResult = queryUsername.get(0);
 
             // Password always Non-Null (can't have Username w/o Password).
-            String actualPassword = query("SELECT password FROM user WHERE username='" + username + "'").get(0);
+            String actualPassword = query("SELECT password FROM clueaccounts WHERE username='" + username + "'").get(0);
 
             return username.equalsIgnoreCase(queryUsernameResult) && password.equals(actualPassword);
         }
@@ -74,10 +74,19 @@ public class Database {
 
     public void addUser(String username, String password) {
         try {
-            executeDML("INSERT INTO user VALUES('" + username + "','" + password + "')");
+            executeDML("INSERT INTO clueaccounts (username, password) VALUES('" + username + "','" + password + "')");
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
+    }
+
+    public int getUserID(String username) {
+        ArrayList<String> queryID = query("SELECT id FROM clueaccounts WHERE username='" + username + "'");
+        if (queryID == null) {
+            // No user exists w/ that ID.
+            return -1;
+        }
+        return Integer.parseInt(queryID.get(0));
     }
 
     public static void main(String[] args) {

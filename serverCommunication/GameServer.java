@@ -119,6 +119,7 @@ public class GameServer extends AbstractServer {
                 try {
                     System.out.println("Successfully created account!");
                     connectionToClient.sendToClient("Successfully created account!");
+                    System.out.println("User's ID is: " + database.getUserID(createAccountData.getUsername()));
                 } catch (IOException e) {
                     throw new RuntimeException(e);
                 }
