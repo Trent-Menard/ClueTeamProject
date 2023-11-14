@@ -37,7 +37,7 @@ public class CreateAccountControl implements ActionListener
     else if (Objects.equals(command, "Submit"))
     {
       // Get the text the user entered in the three fields.
-      CreateAccountPanel createAccountPanel = (CreateAccountPanel)container.getComponent(2);
+      CreateAccountPanel createAccountPanel = (CreateAccountPanel)container.getComponent(3);
       String username = createAccountPanel.getUsername();
       String password = createAccountPanel.getPassword();
       String passwordVerify = createAccountPanel.getPasswordVerify();
