@@ -15,16 +15,6 @@ public class ClientGUI extends JFrame {
 		GameClient client = new GameClient();
 		client.setHost("localhost");
 		client.setPort(8300);
-		try
-		{
-			client.openConnection();
-		}
-		catch (IOException e)
-		{
-			e.printStackTrace();
-		}
-
-
 
 		// Set the title and default close operation.
 		this.setTitle("Clue!");
@@ -36,6 +26,7 @@ public class ClientGUI extends JFrame {
 
 		//Create the Controllers next
 		//Next, create the Controllers
+		IPControl ipc = new IPControl(container, client);
 		InitialControl ic = new InitialControl(container,client);
 		LoginControl lc = new LoginControl(container,client);
 		CreateAccountControl cac = new CreateAccountControl(container,client);
@@ -49,11 +40,12 @@ public class ClientGUI extends JFrame {
 //		client.setWaitingRoom(wrc);
 
 		// Create the views. (need the controller to register with the Panels
-		JPanel view1 = new InitialPanel(ic);
-		JPanel view2 = new LoginPanel(lc);
-		JPanel view3 = new CreateAccountPanel(cac);
-		JPanel view4 = new ChooseCharacterPanel(ccc);
-		JPanel view5 = new WaitingRoomPanel(wrc);
+		JPanel view1 = new IPPanel(ipc);
+		JPanel view2 = new InitialPanel(ic);
+		JPanel view3 = new LoginPanel(lc);
+		JPanel view4 = new CreateAccountPanel(cac);
+		JPanel view5 = new ChooseCharacterPanel(ccc);
+		JPanel view6 = new WaitingRoomPanel(wrc);
 
 		// Add the views to the card layout container.
 		container.add(view1, "1");
@@ -61,6 +53,7 @@ public class ClientGUI extends JFrame {
 		container.add(view3, "3");
 		container.add(view4, "4");
 		container.add(view5, "5");
+		container.add(view6, "6");
 
 		// Show the initial view in the card layout.
 		cardLayout.show(container, "1");
