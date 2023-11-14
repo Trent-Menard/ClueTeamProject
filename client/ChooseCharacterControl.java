@@ -7,9 +7,8 @@ import javax.swing.*;
 import clientCommunication.*;
 
 public class ChooseCharacterControl implements ActionListener {
-	  // Private data fields for the container and chat client.
-	  private JPanel container;
-	  private GameClient client;
+	  private final JPanel container;
+	  private final GameClient client;
 	  private JComboBox myBox;
 	  
 	  ChooseCharacterControl(JPanel container, GameClient client){
@@ -36,13 +35,9 @@ public class ChooseCharacterControl implements ActionListener {
 				e.printStackTrace();
 			}
 	    } 
-
-	    
 	  }
 
 	public void setMyComboBox(JComboBox box) {
 		myBox = box;
 	}
-
-	  
 }

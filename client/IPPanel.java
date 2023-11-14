@@ -6,15 +6,26 @@ import javax.swing.*;
 public class IPPanel extends JPanel{
 	JTextField ipBox;
 	JTextField portBox;
-	
+	JLabel errorMsg;
+
 	IPPanel(IPControl ipc){
 		//Instructions
-		JPanel instructionPanel = new JPanel(new GridLayout(1, 1, 5, 5));
-		JLabel instructions = new JLabel("Please enter your desired IP and port number to use for connection.");
+		JPanel instructionPanel = new JPanel(new GridLayout(2, 1, 5, 5));
+		JLabel instructions = new JLabel("Please enter the Host's IP address and port number.");
+		errorMsg = new JLabel("", JLabel.CENTER);
+		errorMsg.setForeground(Color.RED);
+
 		instructionPanel.add(instructions);
-		
+		instructionPanel.add(errorMsg);
+
 		//Data Entry
-		JPanel boxPanel = new JPanel(new GridLayout(2, 1, 5, 5));
+		JPanel boxPanel = new JPanel(new GridLayout(2, 2, 5, 5));
+		JLabel ipAddress = new JLabel("IP address:", JLabel.CENTER);
+		JLabel portNumber = new JLabel("Port number:", JLabel.CENTER);
+
+		boxPanel.add(ipAddress);
+		boxPanel.add(portNumber);
+
 		ipBox = new JTextField();
 		portBox = new JTextField();
 		boxPanel.add(ipBox);
@@ -37,7 +48,11 @@ public class IPPanel extends JPanel{
 		return ipBox.getText();
 	}
 	
-	public int getPort() {
-		return Integer.parseInt(portBox.getText());
+	public String getPort() {
+		return portBox.getText();
+	}
+
+	public void setErrorMsg(String errorMsg) {
+		this.errorMsg.setText(errorMsg);
 	}
 }

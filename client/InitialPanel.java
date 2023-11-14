@@ -5,7 +5,6 @@ import javax.swing.*;
 
 public class InitialPanel extends JPanel
 {
-  // Constructor for the initial panel.
   public InitialPanel(InitialControl ic)
   {
     // Create the controller.

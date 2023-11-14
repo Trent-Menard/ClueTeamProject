@@ -8,8 +8,7 @@ public class ChooseCharacterPanel extends JPanel{
 	private JLabel msg;
 	private JButton choose;
 	private JButton back;
-	
-	
+
 	ChooseCharacterPanel(ChooseCharacterControl ccc){
 		JPanel labelPanel = new JPanel();
 		msg = new JLabel("Please Choose Your Character");

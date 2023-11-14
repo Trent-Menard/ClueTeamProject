@@ -6,30 +6,26 @@ import java.awt.event.*;
 
 public class LoginPanel extends JPanel
 {
-  // Private data fields for the important GUI components.
   private JTextField usernameField;
   private JPasswordField passwordField;
   private JLabel errorLabel;
   
-  // Getter for the text in the username field.
   public String getUsername()
   {
     return usernameField.getText();
   }
   
-  // Getter for the text in the password field.
   public String getPassword()
   {
     return new String(passwordField.getPassword());
   }
-  
+
   // Setter for the error text.
   public void setError(String error)
   {
     errorLabel.setText(error);
   }
   
-  // Constructor for the login panel.
   public LoginPanel(LoginControl lc)
   {
     // Create the controller and set it in the chat client.
