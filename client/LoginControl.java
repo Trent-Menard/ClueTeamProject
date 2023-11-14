@@ -25,7 +25,7 @@ public class LoginControl implements ActionListener {
         // The Cancel button takes the user back to the initial panel.
         if (command.equals("Cancel")) {
             CardLayout cardLayout = (CardLayout) container.getLayout();
-            cardLayout.show(container, "1");
+            cardLayout.show(container, "2");
         }
 
         // The Submit button submits the login information to the server.
