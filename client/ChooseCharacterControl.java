@@ -23,9 +23,14 @@ public class ChooseCharacterControl implements ActionListener {
 	    if(command.equals("Cancel")) {
 	    	CardLayout cardLayout = (CardLayout)container.getLayout();
 	        cardLayout.show(container, "1");
+	        try {
+				client.closeConnection();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
 	    } else if(command.equals("Confirm")) {
 	    	CardLayout cardLayout = (CardLayout)container.getLayout();
-	        cardLayout.show(container, "5");
+	        cardLayout.show(container, "6");
 	        
 	        String myChar = myBox.getSelectedItem().toString();
 	        ChooseCharacterData data = new ChooseCharacterData(myChar);
