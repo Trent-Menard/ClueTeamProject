@@ -50,6 +50,7 @@ public class IPControl implements ActionListener {
 
 						try {
 							client.openConnection();
+							
 						} catch (IOException ex) {
 							System.err.println("[Error:] Failed to connect to the Server. Check the IP address & port & verify the Server is running.");
 							ippanel.setErrorMsg("Failed to connect to the Server.");
@@ -59,5 +60,10 @@ public class IPControl implements ActionListener {
 				}
 			}
 		}
+	}
+	
+	public void connectionSuccessful() {
+		CardLayout cardLayout = (CardLayout) container.getLayout();
+		cardLayout.show(container, "1");
 	}
 }
