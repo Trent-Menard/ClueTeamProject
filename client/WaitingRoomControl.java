@@ -11,7 +11,7 @@ public class WaitingRoomControl implements ActionListener {
 
 	WaitingRoomControl(JPanel container, GameClient client){
 		this.setContainer(container);
-		this.setClient(client);
+		this.client = client;
 	}
 
 	@Override
@@ -37,9 +37,5 @@ public class WaitingRoomControl implements ActionListener {
 	
 	public GameClient getClient() {
 		return client;
-	}
-	
-	public void setClient(GameClient client) {
-		this.client = client;
 	}
 }
