@@ -6,11 +6,11 @@ import java.io.IOException;
 import javax.swing.*;
 import clientCommunication.*;
 
-public class IPControl implements ActionListener {
+public class ConnectToServerControl implements ActionListener {
 	private final JPanel container;
 	private final GameClient client;
 	
-	IPControl(JPanel container, GameClient client){
+	ConnectToServerControl(JPanel container, GameClient client){
 		this.container = container;
 		this.client = client;
 	}
@@ -19,7 +19,7 @@ public class IPControl implements ActionListener {
 		String command = e.getActionCommand();
 
 		if (command.equals("Connect")) {
-			IPPanel ippanel = (IPPanel) container.getComponent(0);
+			ConnectToServerPanel ippanel = (ConnectToServerPanel) container.getComponent(View.CONNECT_TO_SERVER.ordinal());
 
 			if ((ippanel.getIP().isBlank() && ippanel.getPort().isBlank()))
 				ippanel.setErrorMsg("Missing IP address & port number.");
@@ -64,6 +64,6 @@ public class IPControl implements ActionListener {
 	
 	public void connectionSuccessful() {
 		CardLayout cardLayout = (CardLayout) container.getLayout();
-		cardLayout.show(container, "2");
+		cardLayout.show(container, View.INITIAL.name());
 	}
 }

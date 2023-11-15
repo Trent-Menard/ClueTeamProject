@@ -14,7 +14,7 @@ public class GameServer extends AbstractServer {
     private JTextArea log;
     private JLabel status;
     private boolean running = false;
-     private final Database database = new Database();
+     private /*final*/ Database database/* = new Database()*/;
 
     // Constructor for initializing the server with default settings.
     public GameServer() {

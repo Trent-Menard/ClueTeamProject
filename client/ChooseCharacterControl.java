@@ -22,7 +22,7 @@ public class ChooseCharacterControl implements ActionListener {
 	    String command = ae.getActionCommand();
 	    if(command.equals("Cancel")) {
 	    	CardLayout cardLayout = (CardLayout)container.getLayout();
-	        cardLayout.show(container, "1");
+	        cardLayout.show(container, View.CONNECT_TO_SERVER.name());
 	        try {
 				client.closeConnection();
 			} catch (IOException e) {
@@ -30,7 +30,7 @@ public class ChooseCharacterControl implements ActionListener {
 			}
 	    } else if(command.equals("Confirm")) {
 	    	CardLayout cardLayout = (CardLayout)container.getLayout();
-	        cardLayout.show(container, "6");
+	        cardLayout.show(container, View.WAITING_ROOM.name());
 	        
 	        String myChar = myBox.getSelectedItem().toString();
 	        ChooseCharacterData data = new ChooseCharacterData(myChar);
