@@ -30,7 +30,7 @@ public class CreateAccountControl implements ActionListener
     if (Objects.equals(command, "Cancel"))
     {
       CardLayout cardLayout = (CardLayout)container.getLayout();
-      cardLayout.show(container, "1");
+      cardLayout.show(container, "2");
     }
 
     // The Submit button creates a new account.
@@ -80,7 +80,7 @@ public class CreateAccountControl implements ActionListener
 //    clientGUI.setUser(new User(createAccountPanel.getUsername(), createAccountPanel.getPassword()));
     clientGUI.setPlayer(new Player(createAccountPanel.getUsername(), createAccountPanel.getPassword()));
     CardLayout cardLayout = (CardLayout)container.getLayout();
-    cardLayout.show(container, "5");
+    cardLayout.show(container, "6");
   }
   
   // Method that displays a message in the error label.

@@ -56,7 +56,7 @@ public class LoginControl implements ActionListener {
         LoginPanel loginPanel = (LoginPanel) container.getComponent(2);
 
         CardLayout cardLayout = (CardLayout) container.getLayout();
-        cardLayout.show(container, "5");
+        cardLayout.show(container, "6");
     }
 
     // Method that displays a message in the error label.

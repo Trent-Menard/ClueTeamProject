@@ -24,7 +24,7 @@ public class ClientGUI extends JFrame {
         InitialControl ic = new InitialControl(container, client);
         LoginControl lc = new LoginControl(container, client);
         CreateAccountControl cac = new CreateAccountControl(container, client);
-        ChooseCharacterControl ccc = new ChooseCharacterControl(container, client);
+        //ChooseCharacterControl ccc = new ChooseCharacterControl(container, client);
         WaitingRoomControl wrc = new WaitingRoomControl(container, client);
 
 		client.setLoginControl(lc);
@@ -37,7 +37,7 @@ public class ClientGUI extends JFrame {
 		JPanel view2 = new InitialPanel(ic);
         JPanel view3 = new LoginPanel(lc);
         JPanel view4 = new CreateAccountPanel(cac);
-        JPanel view5 = new ChooseCharacterPanel(ccc);
+        //JPanel view5 = new ChooseCharacterPanel(ccc);
         JPanel view6 = new WaitingRoomPanel(wrc);
 
         // Add the views to the card layout container.
@@ -45,7 +45,7 @@ public class ClientGUI extends JFrame {
         container.add(view2, "2");
         container.add(view3, "3");
         container.add(view4, "4");
-        container.add(view5, "5");
+        //container.add(view5, "5");
 		container.add(view6, "6");
 
         // Show the initial view in the card layout.
