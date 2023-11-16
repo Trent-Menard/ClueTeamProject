@@ -20,11 +20,11 @@ public class ClientGUI extends JFrame {
         JPanel container = new JPanel(cardLayout);
 
         // Create the Controllers
-        IPControl ipc = new IPControl(container, client);
+        ConnectToServerControl ipc = new ConnectToServerControl(container, client);
         InitialControl ic = new InitialControl(container, client);
         LoginControl lc = new LoginControl(container, client);
         CreateAccountControl cac = new CreateAccountControl(container, client);
-        //ChooseCharacterControl ccc = new ChooseCharacterControl(container, client);
+        ChooseCharacterControl ccc = new ChooseCharacterControl(container, client);
         WaitingRoomControl wrc = new WaitingRoomControl(container, client);
 
 		client.setLoginControl(lc);
@@ -33,23 +33,23 @@ public class ClientGUI extends JFrame {
 //		client.setWaitingRoom(wrc);
 
         // Create the Views
-		JPanel view1 = new IPPanel(ipc);
+		JPanel view1 = new ConnectToServerPanel(ipc);
 		JPanel view2 = new InitialPanel(ic);
         JPanel view3 = new LoginPanel(lc);
         JPanel view4 = new CreateAccountPanel(cac);
-        //JPanel view5 = new ChooseCharacterPanel(ccc);
+        JPanel view5 = new ChooseCharacterPanel(ccc);
         JPanel view6 = new WaitingRoomPanel(wrc);
 
         // Add the views to the card layout container.
-        container.add(view1, "1");
-        container.add(view2, "2");
-        container.add(view3, "3");
-        container.add(view4, "4");
-        //container.add(view5, "5");
-		container.add(view6, "6");
+        container.add(view1, View.CONNECT_TO_SERVER.name());
+        container.add(view2, View.INITIAL.name());
+        container.add(view3, View.LOGIN.name());
+        container.add(view4, View.CREATE_ACCOUNT.name());
+        container.add(view5, View.CHOOSE_CHARACTER.name());
+		container.add(view6, View.WAITING_ROOM.name());
 
         // Show the initial view in the card layout.
-        cardLayout.show(container, "1");
+        cardLayout.show(container, View.CONNECT_TO_SERVER.name());
 
         // Add the card layout container to the JFrame.
         // GridBagLayout makes the container stay centered in the window.
@@ -72,5 +72,4 @@ public class ClientGUI extends JFrame {
     public void setPlayer(Player player) {
         this.player = player;
     }
-
 }

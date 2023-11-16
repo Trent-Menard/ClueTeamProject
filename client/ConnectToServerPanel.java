@@ -3,12 +3,12 @@ package client;
 import java.awt.*;
 import javax.swing.*;
 
-public class IPPanel extends JPanel{
+public class ConnectToServerPanel extends JPanel{
 	JTextField ipBox;
 	JTextField portBox;
 	JLabel errorMsg;
 
-	IPPanel(IPControl ipc){
+	ConnectToServerPanel(ConnectToServerControl ipc){
 		//Instructions
 		JPanel instructionPanel = new JPanel(new GridLayout(2, 1, 5, 5));
 		JLabel instructions = new JLabel("Please enter the Host's IP address and port number.");
