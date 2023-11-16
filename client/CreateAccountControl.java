@@ -30,14 +30,14 @@ public class CreateAccountControl implements ActionListener
     if (Objects.equals(command, "Cancel"))
     {
       CardLayout cardLayout = (CardLayout)container.getLayout();
-      cardLayout.show(container, "1");
+      cardLayout.show(container, View.INITIAL.name());
     }
 
     // The Submit button creates a new account.
     else if (Objects.equals(command, "Submit"))
     {
       // Get the text the user entered in the three fields.
-      CreateAccountPanel createAccountPanel = (CreateAccountPanel)container.getComponent(3);
+      CreateAccountPanel createAccountPanel = (CreateAccountPanel)container.getComponent(View.CREATE_ACCOUNT.ordinal());
       String username = createAccountPanel.getUsername();
       String password = createAccountPanel.getPassword();
       String passwordVerify = createAccountPanel.getPasswordVerify();
@@ -75,18 +75,18 @@ public class CreateAccountControl implements ActionListener
   // After an account is created, set the User object and display the contacts screen.
   public void createAccountSuccess()
   {
-    CreateAccountPanel createAccountPanel = (CreateAccountPanel)container.getComponent(2);
+    CreateAccountPanel createAccountPanel = (CreateAccountPanel)container.getComponent(View.CREATE_ACCOUNT.ordinal());
     ClientGUI clientGUI = (ClientGUI)SwingUtilities.getWindowAncestor(createAccountPanel);
 //    clientGUI.setUser(new User(createAccountPanel.getUsername(), createAccountPanel.getPassword()));
     clientGUI.setPlayer(new Player(createAccountPanel.getUsername(), createAccountPanel.getPassword()));
     CardLayout cardLayout = (CardLayout)container.getLayout();
-    cardLayout.show(container, "4");
+    cardLayout.show(container, View.WAITING_ROOM.name());
   }
   
   // Method that displays a message in the error label.
   public void displayError(String error)
   {
-    CreateAccountPanel createAccountPanel = (CreateAccountPanel)container.getComponent(2);
+    CreateAccountPanel createAccountPanel = (CreateAccountPanel)container.getComponent(View.CREATE_ACCOUNT.ordinal());
     createAccountPanel.setError(error);
   }
 }

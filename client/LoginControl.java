@@ -25,13 +25,13 @@ public class LoginControl implements ActionListener {
         // The Cancel button takes the user back to the initial panel.
         if (command.equals("Cancel")) {
             CardLayout cardLayout = (CardLayout) container.getLayout();
-            cardLayout.show(container, "1");
+            cardLayout.show(container, View.INITIAL.name());
         }
 
         // The Submit button submits the login information to the server.
         else if (command.equals("Submit")) {
             // Get the username and password the user entered.
-            LoginPanel loginPanel = (LoginPanel) container.getComponent(1);
+            LoginPanel loginPanel = (LoginPanel) container.getComponent(View.LOGIN.ordinal());
             LoginData data = new LoginData(loginPanel.getUsername(), loginPanel.getPassword());
 
             // Check the validity of the information locally first.
@@ -53,15 +53,13 @@ public class LoginControl implements ActionListener {
 
     // After the login is successful, set the User object and display the contacts screen.
     public void loginSuccess() {
-        LoginPanel loginPanel = (LoginPanel) container.getComponent(1);
-
         CardLayout cardLayout = (CardLayout) container.getLayout();
-        cardLayout.show(container, "4");
+        cardLayout.show(container, View.WAITING_ROOM.name());
     }
 
     // Method that displays a message in the error label.
     public void displayError(String error) {
-        LoginPanel loginPanel = (LoginPanel) container.getComponent(1);
+        LoginPanel loginPanel = (LoginPanel) container.getComponent(View.LOGIN.ordinal());
         loginPanel.setError(error);
     }
 }

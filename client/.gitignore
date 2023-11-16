@@ -17,3 +17,6 @@
 /IPPanel.class
 /IPControl.class
 /IPData.class
+/ConnectToServerControl.class
+/ConnectToServerPanel.class
+/View.class
