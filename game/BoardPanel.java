@@ -1,6 +1,7 @@
 package game;
 
 import javax.swing.*;
+import game.Room;
 import javax.swing.border.LineBorder;
 import javax.swing.plaf.basic.BasicButtonUI;
 import java.awt.*;
@@ -8,6 +9,7 @@ import java.awt.*;
 public class BoardPanel extends JFrame {
     private final int gridSize = 15;
     private final JButton[][] gridButtons = new JButton[gridSize][gridSize];
+    private Room room;
     public BoardPanel() {
         createBoard();
         createRooms();
@@ -63,9 +65,10 @@ public class BoardPanel extends JFrame {
 
     private void createRooms() {
         // Top 3 Rooms
+    	
         createRoomFromButtons(0, 3, 0, 3);
         gridButtons[1][1].setText("KITCHEN");
-
+        
         createRoomFromButtons(0,3,6,9);
         gridButtons[1][7].setText("BALLROOM");
 
@@ -92,6 +95,20 @@ public class BoardPanel extends JFrame {
         createRoomFromButtons(12, 15, 12, 15);
         gridButtons[13][13].setText("STUDY");
     }
+//   private void setRooms(int rowStart, int columnStart)
+//   {
+//	   if (rowStart == 0 && columnStart == 0)
+//	   {
+//		  new Room(0,0);
+//		   
+//	   }
+//	   if (rowStart == 0 && columnStart == 6)
+//	   {
+//		  new Room(0,6);
+//		   
+//	   }
+//	   
+//   }
 
     public JButton[][] getGridButtons() {
         return gridButtons;
