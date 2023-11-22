@@ -103,7 +103,9 @@ public class ServerGUI extends JFrame {
 
         if (!server.isDBConnected()) {
             status.setText("Can't connect to database");
-            listen.setEnabled(false);
+            log.append("[Error:] Can't connect to DB. Bypassing login for now.\n");
+            // TODO: 11/22/2023 Remove this; Bypass server start if can't connect to DB.
+//            listen.setEnabled(false);
         }
 
     }
