@@ -100,6 +100,12 @@ public class ServerGUI extends JFrame {
         server = new GameServer();
         server.setLog(log);
         server.setStatus(status);
+
+        if (!server.isDBConnected()) {
+            status.setText("Can't connect to database");
+            listen.setEnabled(false);
+        }
+
     }
 
     public static void main(String[] args) {

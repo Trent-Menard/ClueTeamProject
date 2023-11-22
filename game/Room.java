@@ -1,117 +1,63 @@
 package game;
 
-import javax.swing.JButton;
-
-import game.BoardPanel;
-
 public class Room {
-	private BoardPanel boardPanel;
-	
-	String roomName;
-	int rowStart;
-	int rowEnd;
-	int columnStart;
-	int columnEnd;
-	
+    private final int rowStart;
+    private final int rowEnd;
+    private final int columnStart;
+    private final int columnEnd;
 
-	public Room(int rowStart, int columnStart )
-	{
-		
-		this.rowStart = rowStart ;
-		this.columnStart = columnStart ;
-		
-	}
-//	public boolean roomOccupied()
-//	{
-//		return true;
-//	}
-	public int getRowStart()
-	{
-		return rowStart;
-		
-	}
-	
-	public int getColumnStart()
-	{
-		return columnStart;
-		
-	}
-	
-	public void setRowStart(int rowStart)
-	{
-		this.rowStart = rowStart;
-	
-	}
-	public void setColumnStart(int columnStart)
-	{
-		this.columnStart = columnStart;
-		
-	}
-	
-	public String getRoomName()
-	{
-		    String roomName;
+    public Room(int rowStart, int rowEnd, int columnStart, int columnEnd) {
+        this.rowStart = rowStart;
+        this.rowEnd = rowEnd;
+        this.columnStart = columnStart;
+        this.columnEnd = columnEnd;
+    }
 
-		    switch (rowStart) {
-		        case 0:
-		            switch (columnStart) {
-		                case 0:
-		                    roomName = "KITCHEN";
-		                    break;
-		                case 6:
-		                    roomName = "BALLROOM";
-		                    break;
-		                case 12:
-		                    roomName = "CONSERVATORY";
-		                    break;
-		                default:
-		                    roomName = "Room Name not found";
-		                    break;
-		            }
-		            break;
+    public int getRowStart() {
+        return rowStart;
+    }
 
-		        case 6:
-		            switch (columnStart) {
-		                case 0:
-		                    roomName = "DINING ROOM";
-		                    break;
-		                case 6:
-		                    roomName = "ROOM NAME HERE"; // Replace with the actual room name
-		                    break;
-		                case 12:
-		                    roomName = "BILLARD ROOM";
-		                    break;
-		                default:
-		                    roomName = "Room Name not found";
-		                    break;
-		            }
-		            break;
+    public int getRowEnd() {
+        return rowEnd;
+    }
 
-		        case 12:
-		            switch (columnStart) {
-		                case 0:
-		                    roomName = "LOUNGE";
-		                    break;
-		                case 6:
-		                    roomName = "HALL";
-		                    break;
-		                case 12:
-		                    roomName = "STUDY";
-		                    break;
-		                default:
-		                    roomName = "Room Name not found";
-		                    break;
-		            }
-		            break;
+    public int getColumnStart() {
+        return columnStart;
+    }
 
-		        default:
-		            roomName = "Room Name not found";
-		            break;
-		    }
+    public int getColumnEnd() {
+        return columnEnd;
+    }
 
-		    return roomName;
-		}
-	
-	
+    public String getRoomName() {
 
+        switch (rowStart) {
+
+            case 0, 1, 2 -> {
+                switch (columnStart) {
+                    case 0, 1, 2 -> { return "KITCHEN"; }
+                    case 6, 7, 8 -> { return "BALLROOM"; }
+                    case 12, 13, 14 -> { return "CONSERVATORY"; }
+                }
+            }
+
+            case 6, 7, 8 -> {
+                switch (columnStart) {
+                    case 0, 1, 2 -> { return "DINING ROOM"; }
+                    case 6, 7, 8 -> { return "?"; }
+                    case 12, 13, 14 -> { return "BILLIARD ROOM"; }
+                }
+            }
+
+            case 12, 13, 14 -> {
+                switch (columnStart) {
+                    case 0, 1, 2 -> { return "LOUNGE"; }
+                    case 6, 7, 8 -> { return "HALL"; }
+                    case 12, 13, 14 -> { return "STUDY"; }
+                }
+            }
+        }
+
+        return "Room does not exist.";
+    }
 }

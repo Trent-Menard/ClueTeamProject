@@ -7,8 +7,8 @@ import java.util.List;
 public class Deck {
     private final List<String> rooms;
     private final List<String> suspects;
-    private final List<String> fullDeck;
     private final List<String> weapons;
+    private final List<String> fullDeck;
 
     // Constructor to initialize the lists
     public Deck() {

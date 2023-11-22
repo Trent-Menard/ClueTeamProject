@@ -4,11 +4,11 @@ import java.awt.*;
 import javax.swing.*;
 
 public class WaitingRoomPanel extends JPanel {
-	private JButton isReady;
-	private JComboBox characters;
-	private JLabel msg;
-	private JButton choose;
-	private JButton back;
+	private final JButton isReady;
+	private final JComboBox characters;
+	private final JLabel msg;
+	private final JButton choose;
+	private final JButton back;
 	
 	WaitingRoomPanel(WaitingRoomControl wrc){
 		JPanel labelPanel = new JPanel();
