@@ -100,6 +100,14 @@ public class ServerGUI extends JFrame {
         server = new GameServer();
         server.setLog(log);
         server.setStatus(status);
+
+        if (!server.isDBConnected()) {
+            status.setText("Can't connect to database");
+            log.append("[Error:] Can't connect to DB. Bypassing login for now.\n");
+            // TODO: 11/22/2023 Remove this; Bypass server start if can't connect to DB.
+//            listen.setEnabled(false);
+        }
+
     }
 
     public static void main(String[] args) {

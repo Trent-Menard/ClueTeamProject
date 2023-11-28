@@ -6,5 +6,5 @@ public enum View {
     LOGIN,
     CREATE_ACCOUNT,
     CHOOSE_CHARACTER,
-    WAITING_ROOM;
+    WAITING_ROOM
 }

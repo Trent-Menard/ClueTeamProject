@@ -43,7 +43,7 @@ public class WaitingRoomControl implements ActionListener {
 				ex.printStackTrace();
 			}
 	    }
-		if(command.equals("Ready") && hasChosen==true) {
+		if(command.equals("Ready") && hasChosen) {
 			WaitingRoomData data = new WaitingRoomData(true, this.client);
 			try {
 				client.sendToServer(data);

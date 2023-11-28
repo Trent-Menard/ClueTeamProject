@@ -4,10 +4,10 @@ import java.awt.*;
 import javax.swing.*;
 
 public class ChooseCharacterPanel extends JPanel{
-	private JComboBox characters;
-	private JLabel msg;
-	private JButton choose;
-	private JButton back;
+	private final JComboBox characters;
+	private final JLabel msg;
+	private final JButton choose;
+	private final JButton back;
 
 	ChooseCharacterPanel(ChooseCharacterControl ccc){
 		JPanel labelPanel = new JPanel();

@@ -1,24 +1,19 @@
 package game;
 
 public class Card {
-	
-	private String category;
-	private String cardName;
+    private final String category;
+    private final String name;
 
-	public Card(String cardName, String category) 
-	{
-		this.category = category;
-		this.cardName = cardName;
-		
-	}
-	
-	public String getCategory()
-	{
-		return category;
-	}
-	public String getCardName()
-	{
-		return cardName;
-	}
-	
+    public Card(String name, String category) {
+        this.category = category;
+        this.name = name;
+    }
+
+    public String getCategory() {
+        return category;
+    }
+
+    public String getCardName() {
+        return name;
+    }
 }

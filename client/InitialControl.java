@@ -8,7 +8,7 @@ import clientCommunication.*;
 public class InitialControl implements ActionListener
 {
   private final JPanel container;
-  private GameClient client;
+  private final GameClient client;
   public InitialControl(JPanel container, GameClient client)
   {
     this.container = container;
