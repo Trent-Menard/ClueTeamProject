@@ -1,14 +1,19 @@
 package client;
 
+import java.io.Serializable;
+
 import clientCommunication.*;
 
-public class WaitingRoomData {
+@SuppressWarnings("serial")
+public class WaitingRoomData implements Serializable {
 	boolean isReady = false;
+	//private String character;
 	private GameClient client;
 	
-	WaitingRoomData(boolean ready, GameClient myClient){
+	WaitingRoomData(boolean ready, GameClient myClient/*, String character*/){
 		setReady(ready);
 		setClient(myClient);
+		//setCharacter(character);
 	}
 	
 	public void setReady(boolean readiness) {
@@ -26,5 +31,13 @@ public class WaitingRoomData {
 	public GameClient getClient() {
 		return client;
 	}
+	
+//	public String getCharacter() {
+//		return this.character;
+//	}
+//	
+//	public void setCharacter(String character) {
+//		this.character = character;
+//	}
 	
 }
