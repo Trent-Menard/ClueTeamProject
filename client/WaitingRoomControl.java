@@ -9,8 +9,7 @@ import clientCommunication.*;
 public class WaitingRoomControl implements ActionListener {
 	private JPanel container;
 	private GameClient client;
-    private JComboBox myBox;
-    private boolean hasChosen = false;
+	//private String character;
 
 
 	WaitingRoomControl(JPanel container, GameClient client){
@@ -30,20 +29,8 @@ public class WaitingRoomControl implements ActionListener {
 			} catch (IOException ex) {
 				ex.printStackTrace();
 			}
-	    } else if(command.equals("Confirm")) {
-	    	hasChosen = true;
-	    	CardLayout cardLayout = (CardLayout)container.getLayout();
-	        cardLayout.show(container, "6");
-	        
-	        String myChar = myBox.getSelectedItem().toString();
-	        ChooseCharacterData data = new ChooseCharacterData(myChar);
-	        try {
-				client.sendToServer(data);
-			} catch (IOException ex) {
-				ex.printStackTrace();
-			}
 	    }
-		if(command.equals("Ready") && hasChosen) {
+		if(command.equals("Ready")) {
 			WaitingRoomData data = new WaitingRoomData(true, this.client);
 			try {
 				client.sendToServer(data);
@@ -69,7 +56,11 @@ public class WaitingRoomControl implements ActionListener {
 		this.client = client;
 	}
 	
-	public void setMyComboBox(JComboBox box) {
-		myBox = box;
-	}
+//	public void setCharacter(String character) {
+//		this.character = character;
+//	}
+//	
+//	public String getCharacter() {
+//		return character;
+//	}
 }
