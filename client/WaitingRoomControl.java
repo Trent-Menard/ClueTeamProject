@@ -11,7 +11,6 @@ public class WaitingRoomControl implements ActionListener {
 	private GameClient client;
 	//private String character;
 
-
 	WaitingRoomControl(JPanel container, GameClient client){
 		this.setContainer(container);
 		this.setGameClient(client);
@@ -23,7 +22,7 @@ public class WaitingRoomControl implements ActionListener {
 	    String command = e.getActionCommand();
 	    if(command.equals("Cancel")) {
 	    	CardLayout cardLayout = (CardLayout)container.getLayout();
-	        cardLayout.show(container, "0");
+	        cardLayout.show(container, View.CONNECT_TO_SERVER.name());
 	        try {
 				client.closeConnection();
 			} catch (IOException ex) {
