@@ -1,11 +1,19 @@
 package game;
 
-import game.Room;
-public class Weapon {
+
+public class Weapon extends Card{
 	Room room;
 	private String weaponName;
 	private int xCoord;
 	private int yCoord;
+	
+	public Weapon(String name, String category, String weaponName, int xCoord, int yCoord)
+	{
+		super(name,category);
+		this.weaponName = weaponName;
+		this.xCoord = xCoord;
+		this.yCoord = yCoord;
+	}
 
 	
 	public void setWeaponName(String weaponName)
@@ -29,6 +37,10 @@ public class Weapon {
 	{
 		this.yCoord = yCoord;
 		
+	}
+	public int getYcoord()
+	{
+		return yCoord;
 	}
 	public boolean isInRoom(String roomName)
 	{

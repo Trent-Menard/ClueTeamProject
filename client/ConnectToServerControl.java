@@ -66,6 +66,6 @@ public class ConnectToServerControl implements ActionListener {
 		CardLayout cardLayout = (CardLayout) container.getLayout();
 //		cardLayout.show(container, View.INITIAL.name());
 		// TODO: 11/22/2023 Remove this; Bypasses login if DB not connected.
-		cardLayout.show(container, View.CHOOSE_CHARACTER.name());
+		cardLayout.show(container, View.WAITING_ROOM.name());
 	}
 }

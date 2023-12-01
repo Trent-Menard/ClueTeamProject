@@ -2,14 +2,17 @@ package game;
 
 import server.Deck;
 
-public class Player {
+public class Player extends Card {
     private final String username;
     private final String password;
     private int ID;
     private String character;
     private Deck deck;
+    
 
-    public Player(String username, String password) {
+
+    public Player(String name, String category, String username, String password) {
+    	super(name, category);
         this.username = username;
         this.password = password;
     }

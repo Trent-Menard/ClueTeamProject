@@ -5,6 +5,12 @@ import java.util.Collections;
 import java.util.List;
 
 public class Deck {
+	//this is how we want to change these
+//	  private final List<Room> rooms;
+//    private final List<Player> suspects;
+//    private final List<Weapon> weapons;
+//    private final List<String> fullDeck;
+    
     private final List<String> rooms;
     private final List<String> suspects;
     private final List<String> weapons;
