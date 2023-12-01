@@ -4,3 +4,6 @@
 /DeterminePlayerOrder.class
 /DiceManager.class
 /Deck.class
+/Deck$Room.class
+/Deck$Suspect.class
+/Deck$Weapon.class
