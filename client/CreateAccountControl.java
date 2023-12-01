@@ -78,7 +78,7 @@ public class CreateAccountControl implements ActionListener
     CreateAccountPanel createAccountPanel = (CreateAccountPanel)container.getComponent(View.CREATE_ACCOUNT.ordinal());
     ClientGUI clientGUI = (ClientGUI)SwingUtilities.getWindowAncestor(createAccountPanel);
 //    clientGUI.setUser(new User(createAccountPanel.getUsername(), createAccountPanel.getPassword()));
-    clientGUI.setPlayer(new Player(createAccountPanel.getUsername(), createAccountPanel.getPassword()));
+//    clientGUI.setPlayer(new Player(createAccountPanel.getUsername(), createAccountPanel.getPassword()));
     CardLayout cardLayout = (CardLayout)container.getLayout();
     cardLayout.show(container, View.WAITING_ROOM.name());
   }

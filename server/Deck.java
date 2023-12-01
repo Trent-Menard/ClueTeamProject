@@ -1,18 +1,19 @@
 package server;
 
+import game.Card;
+import game.Room;
+import game.Suspect;
+import game.Weapon;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-
-    
 public class Deck {
-
-    
-    private List<Room> rooms;
-    private List<Suspect> suspects;
-    private List<Weapon> weapons;
-    private List<Object> fullDeck;
+    private final List<Room> rooms;
+    private final List<Suspect> suspects;
+    private final List<Weapon> weapons;
+    private final List<Card> fullDeck;
 
     // Constructor to initialize the lists
     public Deck() {
@@ -25,15 +26,14 @@ public class Deck {
     // Function to categorize cards into rooms, suspects, and weapons
     public void categorizeCards() {
 
-    	rooms.add(new Room("Kitchen"));
-    	rooms.add(new Room("Ballroom"));
-    	rooms.add(new Room("Conservatory"));
-    	rooms.add(new Room("Dining Room"));
-    	rooms.add(new Room("Billiards Room"));
-    	rooms.add(new Room("Lounge"));
-    	rooms.add(new Room("Hall"));
-    	rooms.add(new Room("Study"));
-
+    	rooms.add(new Room("Kitchen", 0, 3, 0, 3));
+    	rooms.add(new Room("Ballroom", 0,3,6,9));
+    	rooms.add(new Room("Conservatory", 0, 3, 12, 15));
+    	rooms.add(new Room("Dining Room", 6, 9, 0, 3));
+    	rooms.add(new Room("Billiard Room", 6, 9, 12, 15));
+    	rooms.add(new Room("Lounge", 12, 15, 0, 3));
+    	rooms.add(new Room("Hall", 12, 15, 6, 9));
+    	rooms.add(new Room("Study", 12, 15, 12, 15));
 
     	suspects.add(new Suspect("Colonel Mustard"));
     	suspects.add(new Suspect("Miss Scarlet"));
@@ -42,21 +42,18 @@ public class Deck {
     	suspects.add(new Suspect("Professor Plum"));
     	suspects.add(new Suspect("Reverend Green"));
 
-
-    	weapons.add(new Weapon("Candlestick"));
-    	weapons.add(new Weapon("Revolver"));
-    	weapons.add(new Weapon("Dagger"));
-    	weapons.add(new Weapon("Lead Pipe"));
-    	weapons.add(new Weapon("Wrench"));
-    	weapons.add(new Weapon("Rope"));
-
+    	weapons.add(new Weapon("Candlestick", 0, 0));
+    	weapons.add(new Weapon("Revolver", 0, 0));
+    	weapons.add(new Weapon("Dagger", 0, 0));
+    	weapons.add(new Weapon("Lead Pipe", 0, 0));
+    	weapons.add(new Weapon("Wrench", 0, 0));
+    	weapons.add(new Weapon("Rope", 0, 0));
 
     	// Combine all cards into the fullDeck
     	fullDeck.addAll(rooms);
     	fullDeck.addAll(suspects);
     	fullDeck.addAll(weapons);
     }
-
 
     // Function to shuffle the full deck
     public void shuffle() {
@@ -76,60 +73,7 @@ public class Deck {
     	return weapons;
     }
 
-    public List<Object> getFullDeck() {
+    public List<Card> getFullDeck() {
     	return fullDeck;
-    }
-
-    static class Room {
-        private String name;
-
-        public Room(String name) {
-            this.name = name;
-        }
-
-        @Override
-        public String toString() {
-            return name;
-        }
-    }
-
-    static class Suspect {
-        private String name;
-
-        public Suspect(String name) {
-            this.name = name;
-        }
-
-        @Override
-        public String toString() {
-            return name;
-        }
-    }
-
-    static class Weapon {
-        private String name;
-
-        public Weapon(String name) {
-            this.name = name;
-        }
-
-        @Override
-        public String toString() {
-            return name;
-        }
-        
-
-}
-    
-    public static void main(String[] args) {
-    	Deck deck = new Deck();
-    	deck.categorizeCards();
-    	deck.shuffle();
-
-    	// Example usage of getter functions
-    	System.out.println("Rooms: " + deck.getRooms());
-    	System.out.println("Suspects: " + deck.getSuspects());
-    	System.out.println("Weapons: " + deck.getWeapons());
-    	System.out.println("Full Deck: " + deck.getFullDeck());
     }
 }
