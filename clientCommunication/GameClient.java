@@ -3,7 +3,7 @@ package clientCommunication;
 import client.CreateAccountControl;
 import client.LoginControl;
 import ocsf.client.AbstractClient;
-import game.Player;
+import game.*;
 import client.*;
 
 public class GameClient extends AbstractClient {
@@ -36,6 +36,10 @@ public class GameClient extends AbstractClient {
 			CreateAccountData myData = (CreateAccountData) msg;
 			player = new Player(myData.getUsername(), myData.getPassword());
 		}
+		else if (msg instanceof Suspect) {
+			Suspect character = (Suspect) msg;
+			player.setCharacter(character.getCardName());
+		}
 
 	}
 
@@ -45,5 +49,9 @@ public class GameClient extends AbstractClient {
 
 	public void setCreateAccountControl(CreateAccountControl cac) {
 		this.createAccountControl = cac;
+	}
+	
+	public Player getPlayer() {
+		return this.player;
 	}
 }
