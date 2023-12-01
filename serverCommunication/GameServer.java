@@ -79,7 +79,7 @@ public class GameServer extends AbstractServer {
             // Account exists & Username & Password are valid.
             if (isVerified) {
                 try {
-                    connectionToClient.sendToClient("User is authenticated.");
+                    connectionToClient.sendToClient(loginData);
                     System.out.println("User is authenticated.");
                 } catch (IOException e) {
                     throw new RuntimeException(e);
@@ -123,7 +123,7 @@ public class GameServer extends AbstractServer {
 
                 try {
                     System.out.println("Successfully created account!");
-                    connectionToClient.sendToClient("Successfully created account!");
+                    connectionToClient.sendToClient(createAccountData);
                     System.out.println("User's ID is: " + database.getUserID(createAccountData.getUsername()));
                 } catch (IOException e) {
                     throw new RuntimeException(e);

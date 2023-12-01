@@ -3,11 +3,15 @@ package clientCommunication;
 import client.CreateAccountControl;
 import client.LoginControl;
 import ocsf.client.AbstractClient;
+import game.Player;
+import client.*;
 
 public class GameClient extends AbstractClient {
 
 	private LoginControl loginControl;
 	private CreateAccountControl createAccountControl;
+	private Player player;
+	
 	
 	public GameClient() {
 		super("localhost", 8300);
@@ -24,13 +28,16 @@ public class GameClient extends AbstractClient {
 			}
 		}
 
-		else if (msg.toString().equals("User is authenticated.")) {
-			this.loginControl.displayError("");
-			this.loginControl.loginSuccess();
+		else if (msg instanceof LoginData) {
+			LoginData myData = (LoginData) msg;
+			setPlayer(new Player(myData.getUsername(), myData.getPassword()));
 		}
-		else if (msg .equals("Successfully created account!")) {
-			this.createAccountControl.createAccountSuccess();
+		else if (msg instanceof CreateAccountData) {
+			CreateAccountData myData = (CreateAccountData) msg;
+			setPlayer(new Player(myData.getUsername(), myData.getPassword()));
 		}
+		
+
 	}
 
 	public void setLoginControl(LoginControl lc) {
@@ -39,5 +46,13 @@ public class GameClient extends AbstractClient {
 
 	public void setCreateAccountControl(CreateAccountControl cac) {
 		this.createAccountControl = cac;
+	}
+
+	public Player getPlayer() {
+		return player;
+	}
+
+	public void setPlayer(Player player) {
+		this.player = player;
 	}
 }
