@@ -1,7 +1,10 @@
 package client;
 
 import clientCommunication.GameClient;
+import game.BoardController;
+import game.BoardPanel;
 import game.Player;
+import server.GameManager;
 
 import javax.swing.*;
 import java.awt.*;
@@ -14,6 +17,10 @@ public class ClientGUI extends JFrame {
 
         this.setTitle("Clue!");
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+        BoardPanel bp = new BoardPanel();
+        BoardController bc = new BoardController(bp, client);
+        bp.setVisible(true);
 
         // Create the card layout container.
         CardLayout cardLayout = new CardLayout();

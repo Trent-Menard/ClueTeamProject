@@ -1,15 +1,14 @@
 package game;
 
-
 public class Room extends Card {
     private final int rowStart;
     private final int rowEnd;
     private final int columnStart;
     private final int columnEnd;
 
-    public Room(String name, String category, int rowStart, int rowEnd, int columnStart, int columnEnd) {
-    	super(name,category);
-    	this.rowStart = rowStart;
+    public Room(String name, int rowStart, int rowEnd, int columnStart, int columnEnd) {
+        super(name);
+        this.rowStart = rowStart;
         this.rowEnd = rowEnd;
         this.columnStart = columnStart;
         this.columnEnd = columnEnd;

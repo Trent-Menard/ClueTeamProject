@@ -5,6 +5,7 @@ import client.LoginData;
 import database.Database;
 import ocsf.server.AbstractServer;
 import ocsf.server.ConnectionToClient;
+import server.GameManager;
 
 import javax.swing.*;
 import java.awt.*;
@@ -16,12 +17,14 @@ public class GameServer extends AbstractServer {
     private boolean running = false;
     private final Database database = new Database();
     private final boolean isDBConnected;
+    private GameManager gameManager;
 
     // Constructor for initializing the server with default settings.
     public GameServer() {
         super(12345);
         this.setTimeout(500);
         isDBConnected = database.isConnected();
+        this.gameManager = new GameManager();
     }
 
     // Getter that returns whether the server is currently running.

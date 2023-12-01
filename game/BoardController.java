@@ -1,12 +1,15 @@
 package game;
 
+import clientCommunication.GameClient;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class BoardController implements ActionListener {
-    private final BoardPanel boardPanel;
+    private BoardPanel boardPanel;
+    private GameClient client;
     private int row;
     private int col;
 
@@ -18,6 +21,11 @@ public class BoardController implements ActionListener {
         this.boardPanel = boardPanel;
         this.row = row;
         this.col = col;
+    }
+
+    public BoardController(BoardPanel bp, GameClient client) {
+        this(bp);
+        this.client = client;
     }
 
     @Override
