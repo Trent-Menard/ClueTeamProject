@@ -30,13 +30,12 @@ public class GameClient extends AbstractClient {
 
 		else if (msg instanceof LoginData) {
 			LoginData myData = (LoginData) msg;
-			setPlayer(new Player(myData.getUsername(), myData.getPassword()));
+			player = new Player(myData.getUsername(), myData.getPassword());
 		}
 		else if (msg instanceof CreateAccountData) {
 			CreateAccountData myData = (CreateAccountData) msg;
-			setPlayer(new Player(myData.getUsername(), myData.getPassword()));
+			player = new Player(myData.getUsername(), myData.getPassword());
 		}
-		
 
 	}
 
@@ -46,13 +45,5 @@ public class GameClient extends AbstractClient {
 
 	public void setCreateAccountControl(CreateAccountControl cac) {
 		this.createAccountControl = cac;
-	}
-
-	public Player getPlayer() {
-		return player;
-	}
-
-	public void setPlayer(Player player) {
-		this.player = player;
 	}
 }
