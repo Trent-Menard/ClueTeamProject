@@ -14,12 +14,14 @@ public class GameServer extends AbstractServer {
     private JTextArea log;
     private JLabel status;
     private boolean running = false;
-     private /*final*/ Database database/* = new Database()*/;
+    private final Database database = new Database();
+    private final boolean isDBConnected;
 
     // Constructor for initializing the server with default settings.
     public GameServer() {
         super(12345);
         this.setTimeout(500);
+        isDBConnected = database.isConnected();
     }
 
     // Getter that returns whether the server is currently running.
@@ -125,6 +127,10 @@ public class GameServer extends AbstractServer {
                 }
             }
         }
+    }
+
+    public boolean isDBConnected() {
+        return isDBConnected;
     }
 
     // Method that handles listening exceptions by displaying exception information.
