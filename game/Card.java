@@ -20,4 +20,12 @@ public abstract class Card {
     public String getCardName() {
         return name;
     }
+    
+    @Override
+    public String toString() {
+        return "Card{" +
+                "category='" + category + '\'' +
+                ", name='" + name + '\'' +
+                '}';
+    }
 }
