@@ -3,6 +3,7 @@ package serverCommunication;
 import client.CreateAccountData;
 import client.LoginData;
 import database.Database;
+import game.Suspect;
 import ocsf.server.AbstractServer;
 import ocsf.server.ConnectionToClient;
 import server.GameManager;
@@ -10,6 +11,7 @@ import server.GameManager;
 import javax.swing.*;
 import java.awt.*;
 import java.io.IOException;
+import java.util.List;
 
 public class GameServer extends AbstractServer {
     private JTextArea log;
@@ -18,6 +20,7 @@ public class GameServer extends AbstractServer {
     private final Database database = new Database();
     private final boolean isDBConnected;
     private GameManager gameManager;
+    private List<Suspect> suspects = gameManager.getDeck().getSuspects();
 
     // Constructor for initializing the server with default settings.
     public GameServer() {
@@ -79,8 +82,11 @@ public class GameServer extends AbstractServer {
             // Account exists & Username & Password are valid.
             if (isVerified) {
                 try {
-                    connectionToClient.sendToClient("User is authenticated.");
+                    connectionToClient.sendToClient(loginData);
                     System.out.println("User is authenticated.");
+                    Suspect character = suspects.get(0);
+                    suspects.remove(0);
+                    connectionToClient.sendToClient(character);
                 } catch (IOException e) {
                     throw new RuntimeException(e);
                 }
@@ -123,8 +129,11 @@ public class GameServer extends AbstractServer {
 
                 try {
                     System.out.println("Successfully created account!");
-                    connectionToClient.sendToClient("Successfully created account!");
+                    connectionToClient.sendToClient(createAccountData);
                     System.out.println("User's ID is: " + database.getUserID(createAccountData.getUsername()));
+                    Suspect character = suspects.get(0);
+                    suspects.remove(0);
+                    connectionToClient.sendToClient(character);
                 } catch (IOException e) {
                     throw new RuntimeException(e);
                 }
