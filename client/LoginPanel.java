@@ -2,13 +2,12 @@ package client;
 
 import java.awt.*;
 import javax.swing.*;
-import java.awt.event.*;
 
 public class LoginPanel extends JPanel
 {
-  private JTextField usernameField;
-  private JPasswordField passwordField;
-  private JLabel errorLabel;
+  private final JTextField usernameField;
+  private final JPasswordField passwordField;
+  private final JLabel errorLabel;
   
   public String getUsername()
   {

@@ -62,10 +62,11 @@ public class BoardPanel extends JFrame {
     }
 
     private void createRooms() {
+
         // Top 3 Rooms
         createRoomFromButtons(0, 3, 0, 3);
         gridButtons[1][1].setText("KITCHEN");
-
+        
         createRoomFromButtons(0,3,6,9);
         gridButtons[1][7].setText("BALLROOM");
 

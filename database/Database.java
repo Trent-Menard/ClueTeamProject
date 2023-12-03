@@ -4,16 +4,20 @@ import java.sql.*;
 import java.util.ArrayList;
 
 public class Database {
-    private final Connection connection;
+    private Connection connection;
+    private boolean isConnected;
     public Database() {
         try {
             this.connection = DriverManager.getConnection(
                     "jdbc:mysql://localhost:3306/student_space",
                     "student",
                     "hello");
+            this.isConnected = true;
         } catch (SQLException e) {
-            System.err.println("[Error:] Couldn't connect to Database (is it online?).\n");
-            throw new RuntimeException(e); }
+            System.err.println("[Error:] Couldn't connect to the database (is it online?).\n");
+            this.isConnected = false;
+//            throw new RuntimeException(e);
+        }
     }
 
     public ArrayList<String> query(String query) {
@@ -91,5 +95,9 @@ public class Database {
 
     public static void main(String[] args) {
         new Database();
+    }
+
+    public boolean isConnected() {
+        return isConnected;
     }
 }

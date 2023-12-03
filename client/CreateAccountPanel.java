@@ -2,14 +2,13 @@ package client;
 
 import java.awt.*;
 import javax.swing.*;
-import java.awt.event.*;
 
 public class CreateAccountPanel extends JPanel
 {
-	private JTextField usernameField;
-	private JPasswordField passwordField;
-	private JPasswordField passwordVerifyField;
-	private JLabel errorLabel;
+	private final JTextField usernameField;
+	private final JPasswordField passwordField;
+	private final JPasswordField passwordVerifyField;
+	private final JLabel errorLabel;
 
 	public String getUsername()
 	{

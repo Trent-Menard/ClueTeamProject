@@ -9,10 +9,6 @@ import clientCommunication.*;
 public class WaitingRoomControl implements ActionListener {
 	private JPanel container;
 	private GameClient client;
-    private JComboBox myBox;
-    private boolean hasChosen = false;
-
-
 	WaitingRoomControl(JPanel container, GameClient client){
 		this.setContainer(container);
 		this.setGameClient(client);
@@ -24,32 +20,20 @@ public class WaitingRoomControl implements ActionListener {
 	    String command = e.getActionCommand();
 	    if(command.equals("Cancel")) {
 	    	CardLayout cardLayout = (CardLayout)container.getLayout();
-	        cardLayout.show(container, "0");
+	        cardLayout.show(container, View.CONNECT_TO_SERVER.name());
 	        try {
 				client.closeConnection();
 			} catch (IOException ex) {
 				ex.printStackTrace();
 			}
-	    } else if(command.equals("Confirm")) {
-	    	hasChosen = true;
-	    	CardLayout cardLayout = (CardLayout)container.getLayout();
-	        cardLayout.show(container, "6");
-	        
-	        String myChar = myBox.getSelectedItem().toString();
-	        ChooseCharacterData data = new ChooseCharacterData(myChar);
-	        try {
-				client.sendToServer(data);
-			} catch (IOException ex) {
-				ex.printStackTrace();
-			}
 	    }
-		if(command.equals("Ready") && hasChosen==true) {
-			WaitingRoomData data = new WaitingRoomData(true, this.client);
+		if (command.equals("Ready")) {
+/*			WaitingRoomData data = new WaitingRoomData(true, this.client);
 			try {
 				client.sendToServer(data);
 			} catch (IOException ex) {
 				ex.printStackTrace();
-			}
+			}*/
 		}
 	}
 
@@ -68,8 +52,17 @@ public class WaitingRoomControl implements ActionListener {
 	public void setGameClient(GameClient client) {
 		this.client = client;
 	}
-	
-	public void setMyComboBox(JComboBox box) {
-		myBox = box;
+
+	public void updateMsg(String msg) {
+		WaitingRoomPanel waitingRoomPanel = (WaitingRoomPanel) container.getComponent(View.WAITING_ROOM.ordinal());
+		waitingRoomPanel.setMsg(msg);
 	}
+	
+//	public void setCharacter(String character) {
+//		this.character = character;
+//	}
+//	
+//	public String getCharacter() {
+//		return character;
+//	}
 }
