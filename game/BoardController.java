@@ -14,8 +14,7 @@ public class BoardController implements ActionListener {
     private BoardPanel boardPanel;
     private GameClient client;
     private Weapon weapon;
-    private Room room;
-    private Deck deck;
+    private Player player;
     Random rand = new Random();
     
     private int row;
@@ -45,7 +44,40 @@ public class BoardController implements ActionListener {
     		int randY = rand.nextInt(WeaponPointsY.length);
     		weapon.setXcoord(randX);
     		weapon.setYcoord(randY);
+    		
     	}
+    }
+    public void setPlayerPositions()
+    {
+    	String character = " ";
+    	character = player.getCharacter();
+    	
+    	if (character == "Dr. Orchid") 
+    	{
+    		boardPanel.getGridButtons()[0][4].setBackground(Color.PINK);
+    	}
+    	if (character == "Reverend Green") 
+    	{
+    		boardPanel.getGridButtons()[0][10].setBackground(Color.GREEN);
+    	}
+    	if (character == "Mrs. Peacock") 
+    	{
+    		boardPanel.getGridButtons()[4][14].setBackground(Color.BLUE);
+    	}
+    	if (character == "Professor Plum") 
+    	{
+    		boardPanel.getGridButtons()[10][14].setBackground(Color.MAGENTA);
+    	}
+    	if (character == "Miss Scarlet") 
+    	{
+    		boardPanel.getGridButtons()[14][4].setBackground(Color.RED);
+    	}
+    	if (character == "Colonel Mustard") 
+    	{
+    		boardPanel.getGridButtons()[10][0].setBackground(Color.YELLOW);
+    	}
+    	
+  
     }
 
     @Override
