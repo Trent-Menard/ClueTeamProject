@@ -2,7 +2,9 @@ package game;
 
 import server.Deck;
 
-public class Player {
+import java.io.Serializable;
+
+public class Player implements Serializable {
     private final String username;
     private final String password;
     private int ID;

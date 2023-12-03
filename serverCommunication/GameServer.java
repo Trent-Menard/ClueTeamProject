@@ -3,6 +3,8 @@ package serverCommunication;
 import client.CreateAccountData;
 import client.LoginData;
 import database.Database;
+import game.Player;
+import game.Suspect;
 import ocsf.server.AbstractServer;
 import ocsf.server.ConnectionToClient;
 import server.GameManager;
@@ -10,6 +12,8 @@ import server.GameManager;
 import javax.swing.*;
 import java.awt.*;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class GameServer extends AbstractServer {
     private JTextArea log;
@@ -79,8 +83,19 @@ public class GameServer extends AbstractServer {
             // Account exists & Username & Password are valid.
             if (isVerified) {
                 try {
-                    connectionToClient.sendToClient("User is authenticated.");
+//                    connectionToClient.sendToClient(loginData);
                     System.out.println("User is authenticated.");
+
+                    Player player = new Player(loginData.getUsername(), loginData.getPassword());
+                    gameManager.assignPlayerCharacter(player);
+                    gameManager.setPlayersReady(gameManager.getPlayersReady() + 1);
+
+                    gameManager.addPlayer(player);
+
+                    System.out.println("Players ready: " + gameManager.getPlayersReady());
+//                    gameManager.assignPlayerDeck(player);
+                    connectionToClient.sendToClient(player);
+
                 } catch (IOException e) {
                     throw new RuntimeException(e);
                 }
@@ -123,7 +138,11 @@ public class GameServer extends AbstractServer {
 
                 try {
                     System.out.println("Successfully created account!");
-                    connectionToClient.sendToClient("Successfully created account!");
+
+                    Player player = new Player(createAccountData.getUsername(), createAccountData.getPassword());
+//                    gameManager.assignPlayerDeck(player);
+                    connectionToClient.sendToClient(player);
+
                     System.out.println("User's ID is: " + database.getUserID(createAccountData.getUsername()));
                 } catch (IOException e) {
                     throw new RuntimeException(e);

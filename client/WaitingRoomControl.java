@@ -9,8 +9,6 @@ import clientCommunication.*;
 public class WaitingRoomControl implements ActionListener {
 	private JPanel container;
 	private GameClient client;
-	//private String character;
-
 	WaitingRoomControl(JPanel container, GameClient client){
 		this.setContainer(container);
 		this.setGameClient(client);
@@ -29,13 +27,13 @@ public class WaitingRoomControl implements ActionListener {
 				ex.printStackTrace();
 			}
 	    }
-		if(command.equals("Ready")) {
-			WaitingRoomData data = new WaitingRoomData(true, this.client);
+		if (command.equals("Ready")) {
+/*			WaitingRoomData data = new WaitingRoomData(true, this.client);
 			try {
 				client.sendToServer(data);
 			} catch (IOException ex) {
 				ex.printStackTrace();
-			}
+			}*/
 		}
 	}
 
@@ -53,6 +51,11 @@ public class WaitingRoomControl implements ActionListener {
 	
 	public void setGameClient(GameClient client) {
 		this.client = client;
+	}
+
+	public void updateMsg(String msg) {
+		WaitingRoomPanel waitingRoomPanel = (WaitingRoomPanel) container.getComponent(View.WAITING_ROOM.ordinal());
+		waitingRoomPanel.setMsg(msg);
 	}
 	
 //	public void setCharacter(String character) {
