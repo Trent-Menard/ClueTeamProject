@@ -10,9 +10,9 @@ public class GameClient extends AbstractClient {
 
 	private LoginControl loginControl;
 	private CreateAccountControl createAccountControl;
+	private WaitingRoomControl waitingRoomControl;
 	private Player player;
-	
-	
+
 	public GameClient() {
 		super("localhost", 8300);
 	}
@@ -28,7 +28,16 @@ public class GameClient extends AbstractClient {
 			}
 		}
 
-		else if (msg instanceof LoginData) {
+		else if (msg instanceof Player playerMsg) {
+			player = playerMsg;
+
+			this.loginControl.loginSuccess();
+			waitingRoomControl.updateMsg("Your character: " + player.getCharacter());
+//			WaitingRoomPanel waitingRoomPanel = (WaitingRoomPanel) waitingRoomControl.getContainer();
+//			waitingRoomPanel.setMsg("You are character: " + player.getCharacter());
+		}
+
+/*		else if (msg instanceof LoginData) {
 			LoginData myData = (LoginData) msg;
 			player = new Player(myData.getUsername(), myData.getPassword());
 		}
@@ -39,8 +48,7 @@ public class GameClient extends AbstractClient {
 		else if (msg instanceof Suspect) {
 			Suspect character = (Suspect) msg;
 			player.setCharacter(character.getCardName());
-		}
-
+		}*/
 	}
 
 	public void setLoginControl(LoginControl lc) {
@@ -50,7 +58,11 @@ public class GameClient extends AbstractClient {
 	public void setCreateAccountControl(CreateAccountControl cac) {
 		this.createAccountControl = cac;
 	}
-	
+
+	public void setWaitingRoomControl(WaitingRoomControl waitingRoomControl) {
+		this.waitingRoomControl = waitingRoomControl;
+	}
+
 	public Player getPlayer() {
 		return this.player;
 	}

@@ -8,7 +8,7 @@ public class WaitingRoomPanel extends JPanel {
 	private JButton isReady;
 	private JLabel msg;
 	private JButton back;
-	
+
 	WaitingRoomPanel(WaitingRoomControl wrc){
 		JPanel labelPanel = new JPanel();
 		msg = new JLabel("Are ya ready kids?");
@@ -25,5 +25,9 @@ public class WaitingRoomPanel extends JPanel {
 		this.setLayout(new GridLayout(2, 1));
 		this.add(labelPanel);
 		this.add(buttonPanel);
+	}
+
+	public void setMsg(String msg) {
+		this.msg.setText(msg);
 	}
 }
