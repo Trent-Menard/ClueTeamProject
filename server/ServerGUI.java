@@ -10,7 +10,7 @@ import java.io.IOException;
 
 public class ServerGUI extends JFrame {
     private final JLabel status;
-    private final String[] labels = {"Port #", "Timeout"};
+    private final String[] labels = {"Port #", "Timeout", "# of Players"};
     private final JTextField[] textFields = new JTextField[labels.length];
     private final JTextArea log;
     private final JButton listen;
@@ -18,6 +18,7 @@ public class ServerGUI extends JFrame {
     private final JButton stop;
     private final JButton quit;
     private final GameServer server;
+    private int numOfPlayers = 0;
 
     public ServerGUI() {
         // Create the main variables that will be used.
@@ -143,12 +144,19 @@ public class ServerGUI extends JFrame {
 
                 // Otherwise, tell the server to start listening with the user's settings.
                 else {
-                    server.setPort(Integer.parseInt(textFields[0].getText()));
-                    server.setTimeout(Integer.parseInt(textFields[1].getText()));
-                    try {
-                        server.listen();
-                    } catch (IOException e1) {
-                        log.append("An exception occurred: " + e1.getMessage() + "\n");
+                    if (textFields[2].getText().isBlank()) {
+                        log.append("Missing # of Players.\n");
+                    } else {
+                        numOfPlayers = Integer.parseInt(textFields[2].getText());
+                        server.setNumOfPlayers(numOfPlayers);
+
+                        server.setPort(Integer.parseInt(textFields[0].getText()));
+                        server.setTimeout(Integer.parseInt(textFields[1].getText()));
+                        try {
+                            server.listen();
+                        } catch (IOException e1) {
+                            log.append("An exception occurred: " + e1.getMessage() + "\n");
+                        }
                     }
                 }
             }
@@ -188,5 +196,9 @@ public class ServerGUI extends JFrame {
                 System.exit(0);
             }
         }
+    }
+
+    public int getNumOfPlayers() {
+        return numOfPlayers;
     }
 }

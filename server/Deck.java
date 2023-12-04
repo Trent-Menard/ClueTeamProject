@@ -17,7 +17,8 @@ public class Deck {
     private final List<Card> fullDeck;
     private final List<Card> envelope;
     private final List<Card> playerHand;
-
+   
+    
     // Constructor to initialize the lists
     public Deck() {
     	this.rooms = new ArrayList<>();
@@ -53,7 +54,7 @@ public class Deck {
     	weapons.add(new Weapon("Lead Pipe", 0, 0));
     	weapons.add(new Weapon("Wrench", 0, 0));
     	weapons.add(new Weapon("Rope", 0, 0));
-
+    	
     	// Combine all cards into the fullDeck
     	fullDeck.addAll(rooms);
     	fullDeck.addAll(suspects);
