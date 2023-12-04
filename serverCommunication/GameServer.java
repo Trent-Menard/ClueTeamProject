@@ -2,6 +2,7 @@ package serverCommunication;
 
 import client.CreateAccountData;
 import client.LoginData;
+import client.WaitingRoomData;
 import database.Database;
 import game.Player;
 import game.Suspect;
@@ -22,6 +23,7 @@ public class GameServer extends AbstractServer {
     private final Database database = new Database();
     private final boolean isDBConnected;
     private GameManager gameManager;
+    
 
     // Constructor for initializing the server with default settings.
     public GameServer() {
@@ -95,7 +97,6 @@ public class GameServer extends AbstractServer {
                     System.out.println("Players ready: " + gameManager.getPlayersReady());
 //                    gameManager.assignPlayerDeck(player);
                     connectionToClient.sendToClient(player);
-
                 } catch (IOException e) {
                     throw new RuntimeException(e);
                 }
@@ -138,16 +139,23 @@ public class GameServer extends AbstractServer {
 
                 try {
                     System.out.println("Successfully created account!");
-
+                    
                     Player player = new Player(createAccountData.getUsername(), createAccountData.getPassword());
+                    
+                    gameManager.assignPlayerCharacter(player);
+                    gameManager.setPlayersReady(gameManager.getPlayersReady() + 1);
+
+                    gameManager.addPlayer(player);
 //                    gameManager.assignPlayerDeck(player);
                     connectionToClient.sendToClient(player);
-
                     System.out.println("User's ID is: " + database.getUserID(createAccountData.getUsername()));
                 } catch (IOException e) {
                     throw new RuntimeException(e);
                 }
             }
+        }
+        else if (object instanceof WaitingRoomData waitingRoomData) {
+        	
         }
     }
 
