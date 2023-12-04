@@ -8,6 +8,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import java.util.Random;
 
 public class BoardController implements ActionListener {
@@ -19,8 +20,11 @@ public class BoardController implements ActionListener {
     
     private int row;
     private int col;
-    private int[] WeaponPointsX = {1,2,1,7,7,13,12,13};
-    private int[] WeaponPointsY = {2,7,12,2,12,2,7,12};
+    private ArrayList<Integer> xPoints = new ArrayList<>();
+    private ArrayList<Integer> yPoints = new ArrayList<>();
+    
+    //private int[] WeaponPointsX = {1,2,1,7,7,13,12,13};
+    //private int[] WeaponPointsY = {2,7,12,2,12,2,7,12};
     	
     public BoardController(BoardPanel boardPanel) {
         this.boardPanel = boardPanel;
@@ -38,13 +42,31 @@ public class BoardController implements ActionListener {
     }
     public void randomizeWeapons(Weapon weapon)
     {
+    	xPoints.add(1);
+    	xPoints.add(2);
+    	xPoints.add(1);
+    	xPoints.add(7);
+    	xPoints.add(7);
+    	xPoints.add(13);
+    	xPoints.add(12);
+    	xPoints.add(13);
+    	
+    	yPoints.add(2);
+    	yPoints.add(7);
+    	yPoints.add(12);
+    	yPoints.add(2);
+    	yPoints.add(12);
+    	yPoints.add(2);
+    	yPoints.add(7);
+    	yPoints.add(12);
     	for (int i= 0; i < 6 ; i++)
     	{
-    		int randX = rand.nextInt(WeaponPointsX.length);
-    		int randY = rand.nextInt(WeaponPointsY.length);
+    		int randX = rand.nextInt(xPoints.size());
+    		int randY = rand.nextInt(yPoints.size());
     		weapon.setXcoord(randX);
     		weapon.setYcoord(randY);
-    		
+    		xPoints.remove(randX);
+    		yPoints.remove(randX);	
     	}
     }
     public void setPlayerPositions()
@@ -55,6 +77,9 @@ public class BoardController implements ActionListener {
     	if (character == "Dr. Orchid") 
     	{
     		boardPanel.getGridButtons()[0][4].setBackground(Color.PINK);
+    		//ImageIcon orchid = new ImageIcon("Dr Orchid.png");
+    		
+    		
     	}
     	if (character == "Reverend Green") 
     	{
