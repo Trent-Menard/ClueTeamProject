@@ -17,9 +17,13 @@ public class GameManager {
         this.deck = new Deck();
         this.deck.categorizeCards();
         this.suspects = deck.getSuspects();
+        this.deck.shuffle();
+    	this.deck.CreateEnvelope();
+    	
     }
 
     public void assignPlayerDeck(Player player) {
+    	deck.PlayerHand();
     	player.setPlayerHand(deck.getPlayerHand());
     }
 

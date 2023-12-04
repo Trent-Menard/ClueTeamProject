@@ -83,8 +83,10 @@ public class Deck {
     
     public void PlayerHand() {
     	
-    
-    	playerHand.removeAll(playerHand);        
+    //Ensures that only one set of three cards is in the set and it doesn't multiply
+    	playerHand.removeAll(playerHand);   
+    	
+    	//Creates a fresh player hand of three cards.
     	if (playerHand.isEmpty())
     	{
         	double randomValue = Math.random();
