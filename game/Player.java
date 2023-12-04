@@ -2,15 +2,13 @@ package game;
 
 import server.Deck;
 
-<<<<<<< Updated upstream
-public class Player {
-=======
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
+
 public class Player implements Serializable {
->>>>>>> Stashed changes
+
     private final String username;
     private final String password;
     private int ID;

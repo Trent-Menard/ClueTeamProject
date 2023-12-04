@@ -1,5 +1,9 @@
 package server;
 
+import java.util.Collections;
+
+import game.Player;
+
 public class GameManager {
     private final Deck deck;
    
@@ -7,9 +11,8 @@ public class GameManager {
     public GameManager() {
         this.deck = new Deck();
         this.deck.categorizeCards();
+    }
 
-<<<<<<< Updated upstream
-=======
     public void assignPlayerDeck(Player player) {
     	player.setPlayerHand(deck.getPlayerHand());
     }
@@ -22,7 +25,7 @@ public class GameManager {
 
     public void addPlayer(Player player) {
         this.players.add(player);
->>>>>>> Stashed changes
+
     }
 
     public Deck getDeck() {

@@ -140,7 +140,8 @@ public class Deck {
     	return fullDeck;
     }
     
-    public static void main(String[] args) {
+    // This is a test main to ensure that the playerhands are being created and they are different from the envelope
+    /*public static void main(String[] args) {
     	Deck deck = new Deck();
     	deck.categorizeCards();
     	deck.shuffle();
@@ -158,5 +159,5 @@ public class Deck {
      	System.out.println("Hand 5" + deck.getPlayerHand());
      	
      	System.out.println("This is the Envelope" + deck.getEnvelope());
-    }
+    }*/
 }
