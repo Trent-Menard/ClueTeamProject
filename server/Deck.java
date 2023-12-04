@@ -83,25 +83,39 @@ public class Deck {
     
     public void PlayerHand() {
     	
-    	int minr = 1; // Minimum value of range
-        int maxr = rooms.size(); // Maximum value of range
-        int r = (int)Math.floor(Math.random() * (maxr - minr + 1) + minr);
-        
-        int mins = 1; // Minimum value of range
-        int maxs = suspects.size(); // Maximum value of range
-        int s = (int)Math.floor(Math.random() * (maxs - mins + 1) + mins);
-        
-        int minw = 1; // Minimum value of range
-        int maxw = weapons.size(); // Maximum value of range
-        int w = (int)Math.floor(Math.random() * (maxw - minw + 1) + minw);
-        
-    	playerHand.add(rooms.get(r));
-    	playerHand.add(suspects.get(s));
-    	playerHand.add(weapons.get(w));
+    //Ensures that only one set of three cards is in the set and it doesn't multiply
+    	playerHand.removeAll(playerHand);   
     	
-    	rooms.remove(rooms.get(r));
-    	suspects.remove(suspects.get(s));
-    	weapons.remove(weapons.get(w));
+    	//Creates a fresh player hand of three cards.
+    	if (playerHand.isEmpty())
+    	{
+        	double randomValue = Math.random();
+        	
+        	
+        	int minr = 1; // Minimum value of range
+            int maxr = (fullDeck.size()-1); // Maximum value of range
+            int r = minr + (int) (randomValue * ((maxr - minr) + 1));
+            
+            int mins = 1; // Minimum value of range
+            int maxs = (fullDeck.size()-1); // Maximum value of range
+            int s = mins + (int) (randomValue * ((maxs - mins) + 1));
+            
+            int minw = 1; // Minimum value of range
+            int maxw = (fullDeck.size()-1); // Maximum value of range
+            int w = minw + (int) (randomValue * ((maxw - minw) + 1));
+          
+        	
+        	playerHand.add(fullDeck.get(r));
+         	fullDeck.remove(fullDeck.get(r));
+        	playerHand.add(fullDeck.get(s));
+           	fullDeck.remove(fullDeck.get(s));
+        	playerHand.add(fullDeck.get(w));
+        	fullDeck.remove(fullDeck.get(w));
+   
+     
+        	
+    	}
+        
     	
     	
 
@@ -130,19 +144,25 @@ public class Deck {
     public List<Card> getFullDeck() {
     	return fullDeck;
     }
-    /*
-    public static void main(String[] args) {
+    
+    // This is a test main to ensure that the playerhands are being created and they are different from the envelope
+   /* public static void main(String[] args) {
     	Deck deck = new Deck();
     	deck.categorizeCards();
     	deck.shuffle();
     	deck.CreateEnvelope();
     	deck.PlayerHand();
     	// Example usage of getter functions
-    	System.out.println("Your Hand" + deck.getPlayerHand());
+    	System.out.println("Hand 1" + deck.getPlayerHand());
     	deck.PlayerHand();
-    	System.out.println("Your Hand" + deck.getPlayerHand());
+    	System.out.println("Hand 2" + deck.getPlayerHand());
     	deck.PlayerHand();
-    	System.out.println("Your Hand" + deck.getPlayerHand());
-    	
+    	System.out.println("Hand 3" + deck.getPlayerHand());
+    	deck.PlayerHand();
+     	System.out.println("Hand 4" + deck.getPlayerHand());
+    	deck.PlayerHand();
+     	System.out.println("Hand 5" + deck.getPlayerHand());
+     	
+     	System.out.println("This is the Envelope" + deck.getEnvelope());
     }*/
 }
