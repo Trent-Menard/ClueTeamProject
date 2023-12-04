@@ -36,16 +36,18 @@ public class GameClient extends AbstractClient {
 //			WaitingRoomPanel waitingRoomPanel = (WaitingRoomPanel) waitingRoomControl.getContainer();
 //			waitingRoomPanel.setMsg("You are character: " + player.getCharacter());
 		}
-
-/*		else if (msg instanceof LoginData) {
+		
+		/*
+		else if (msg instanceof LoginData) {
 			LoginData myData = (LoginData) msg;
 			player = new Player(myData.getUsername(), myData.getPassword());
 		}
-		else if (msg instanceof CreateAccountData) {
+			else if (msg instanceof CreateAccountData) {
 			CreateAccountData myData = (CreateAccountData) msg;
 			player = new Player(myData.getUsername(), myData.getPassword());
+			
 		}
-		else if (msg instanceof Suspect) {
+				else if (msg instanceof Suspect) {
 			Suspect character = (Suspect) msg;
 			player.setCharacter(character.getCardName());
 		}*/
