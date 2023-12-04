@@ -17,9 +17,13 @@ public class GameManager {
         this.deck = new Deck();
         this.deck.categorizeCards();
         this.suspects = deck.getSuspects();
+        this.deck.shuffle();
+    	this.deck.CreateEnvelope();
+    	
     }
 
     public void assignPlayerDeck(Player player) {
+    	deck.PlayerHand();
     	player.setPlayerHand(deck.getPlayerHand());
     }
 
@@ -36,5 +40,21 @@ public class GameManager {
 
     public Deck getDeck() {
         return deck;
+    }
+
+    public int getPlayersReady() {
+        return playersReady;
+    }
+
+    public void setPlayersReady(int playersReady) {
+        this.playersReady = playersReady;
+    }
+
+    public void setNumOfPlayersNeededToStart(int numOfPlayersNeededToStart) {
+        this.numOfPlayersNeededToStart = numOfPlayersNeededToStart;
+    }
+
+    public int getNumOfPlayersNeededToStart() {
+        return numOfPlayersNeededToStart;
     }
 }
