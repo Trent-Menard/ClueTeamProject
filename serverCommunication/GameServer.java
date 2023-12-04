@@ -23,7 +23,6 @@ public class GameServer extends AbstractServer {
     private final Database database = new Database();
     private final boolean isDBConnected;
     private GameManager gameManager;
-    
 
     // Constructor for initializing the server with default settings.
     public GameServer() {
@@ -91,7 +90,6 @@ public class GameServer extends AbstractServer {
                     Player player = new Player(loginData.getUsername(), loginData.getPassword());
                     gameManager.assignPlayerCharacter(player);
                     gameManager.setPlayersReady(gameManager.getPlayersReady() + 1);
-
                     gameManager.addPlayer(player);
 
                     System.out.println("Players ready: " + gameManager.getPlayersReady());
@@ -170,5 +168,9 @@ public class GameServer extends AbstractServer {
         status.setForeground(Color.RED);
         log.append("Listening exception: " + exception.getMessage() + "\n");
         log.append("Press Listen to restart server\n");
+    }
+
+    public void setNumOfPlayers(int numOfPlayers) {
+        this.gameManager.setNumOfPlayersNeededToStart(numOfPlayers);
     }
 }

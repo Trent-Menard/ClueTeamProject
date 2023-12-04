@@ -2,7 +2,6 @@ package server;
 
 import game.Player;
 import game.Suspect;
-import game.Card;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -10,7 +9,7 @@ import java.util.List;
 public class GameManager {
     private final Deck deck;
     private int playersReady = 0;
-    private final int MIN_PLAYERS_NEEDED_TO_START = 0;
+    private int numOfPlayersNeededToStart;
     private final List<Player> players = new ArrayList<>();
     private List<Suspect> suspects = new ArrayList<>();
 
@@ -44,5 +43,13 @@ public class GameManager {
 
     public void setPlayersReady(int playersReady) {
         this.playersReady = playersReady;
+    }
+
+    public void setNumOfPlayersNeededToStart(int numOfPlayersNeededToStart) {
+        this.numOfPlayersNeededToStart = numOfPlayersNeededToStart;
+    }
+
+    public int getNumOfPlayersNeededToStart() {
+        return numOfPlayersNeededToStart;
     }
 }
