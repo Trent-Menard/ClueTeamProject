@@ -24,7 +24,6 @@ public class AccusationControl implements ActionListener{
 			String suspect = ap.getSuspect();
 			boolean isFinal = ap.getIsFinal();
 			AccusationData data = new AccusationData(suspect, room, weapon, isFinal);
-			
 			try {
 				client.sendToServer(data);
 			} catch (IOException e1) {
@@ -33,7 +32,8 @@ public class AccusationControl implements ActionListener{
 			}
 		}
 		else if(command.equals("Cancel")) {
-			//Idk what this should send us back to
+			CardLayout cardLayout = (CardLayout)container.getLayout();
+			cardLayout.show(container, View.PLAYER_TURN.name());
 		}
 		else {
 			//you screwed up to get here
