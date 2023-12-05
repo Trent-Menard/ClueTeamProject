@@ -19,6 +19,10 @@ public class PlayerTurnPanel extends JPanel{
 		skip.addActionListener(ptc);
 		accuse.addActionListener(ptc);
 		
-		this.add(buttonPanel);
+		//for Player Hand
+		JPanel handPanel = new JPanel(new GridLayout());
+		
+		this.setLayout(new GridLayout(2, 1));
+		this.add(buttonPanel);		
 	}
 }

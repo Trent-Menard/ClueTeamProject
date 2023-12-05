@@ -15,15 +15,15 @@ public class GameClient extends AbstractClient {
 	public GameClient() {
 		super("localhost", 8300);
 	}
-	
+
 	// Handle messages from the server
 	public void handleMessageFromServer(Object msg) {
 
 		if (msg instanceof Error result) {
 			switch (result.getMessage()) {
-				case "User is not authenticated." -> this.loginControl.displayError("Invalid username or password.");
-				case "Account does not exist." -> this.loginControl.displayError("Account does not exist.");
-				case "Username already exists." -> this.createAccountControl.displayError("Username already exists.");
+			case "User is not authenticated." -> this.loginControl.displayError("Invalid username or password.");
+			case "Account does not exist." -> this.loginControl.displayError("Account does not exist.");
+			case "Username already exists." -> this.createAccountControl.displayError("Username already exists.");
 			}
 		}
 
@@ -47,24 +47,24 @@ public class GameClient extends AbstractClient {
 			player.getDeck().getWeapons().forEach(s -> System.out.println(" - "+ s.getWeaponName()));
 
 
-//			WaitingRoomPanel waitingRoomPanel = (WaitingRoomPanel) waitingRoomControl.getContainer();
-//			waitingRoomPanel.setMsg("You are character: " + player.getCharacter());
+			//			WaitingRoomPanel waitingRoomPanel = (WaitingRoomPanel) waitingRoomControl.getContainer();
+			//			waitingRoomPanel.setMsg("You are character: " + player.getCharacter());
 		}
-		
-		/*
+
+
 		else if (msg instanceof LoginData) {
 			LoginData myData = (LoginData) msg;
-			player = new Player(myData.getUsername(), myData.getPassword());
+			player = myData.getPlayer();
 		}
-			else if (msg instanceof CreateAccountData) {
+		else if (msg instanceof CreateAccountData) {
 			CreateAccountData myData = (CreateAccountData) msg;
-			player = new Player(myData.getUsername(), myData.getPassword());
-			
+			player = myData.getPlayer();
+
 		}
-				else if (msg instanceof Suspect) {
+		else if (msg instanceof Suspect) {
 			Suspect character = (Suspect) msg;
 			player.setCharacter(character.getCardName());
-		}*/
+		}
 	}
 
 	public void setLoginControl(LoginControl lc) {
