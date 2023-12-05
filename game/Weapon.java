@@ -28,7 +28,7 @@ public class Weapon extends Card {
         this.xCoord = xCoord;
     }
 
-    public void setYoord(int yCoord) {
+    public void setYcoord(int yCoord) {
         this.yCoord = yCoord;
     }
 
@@ -37,7 +37,14 @@ public class Weapon extends Card {
     }
 
     public boolean isInRoom(String roomName) {
-        return false;
+        if (roomName.contains(weaponName))
+        {
+        	return true;
+        }
+        else 
+        {
+        	return false;
+        }
     }
 }
 
