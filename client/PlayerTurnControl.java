@@ -1,7 +1,7 @@
 package client;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.awt.*;
+import java.awt.event.*;
 import java.io.IOException;
 
 import javax.swing.JPanel;
@@ -38,17 +38,16 @@ public class PlayerTurnControl implements ActionListener{
 			}
 		}
 		else if(command.equals("Make Accusation/Suggestion")) {
-			pdt = new PlayerTurnData(command);
-			try {
-				client.sendToServer(pdt);
-			} catch (IOException e1) {
-				e1.printStackTrace();
-			}
+			CardLayout cardLayout = (CardLayout) container.getLayout();
+			cardLayout.show(container, View.ACCUSATION_PANEL.name());
 		}
 		else {
 			//tf did you do
 		}
 
+	}
+	public GameClient getClient() {
+		return this.client;
 	}
 
 }

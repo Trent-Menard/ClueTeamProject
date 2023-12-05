@@ -27,7 +27,6 @@ public class AccusationControl implements ActionListener{
 			try {
 				client.sendToServer(data);
 			} catch (IOException e1) {
-				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			}
 		}
