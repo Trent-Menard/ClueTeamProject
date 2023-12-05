@@ -20,3 +20,12 @@
 /ConnectToServerControl.class
 /ConnectToServerPanel.class
 /View.class
+/AccusationPanel.class
+/AccusationControl.class
+/AccusationData.class
+/PlayerTurnPanel.class
+/PlayerTurnControl.class
+/PlayerTurnData.class
+/GatherIntelPanel.class
+/GatherIntelData.class
+/GatherIntelControl.class

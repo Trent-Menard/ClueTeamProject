@@ -16,7 +16,7 @@ public class WaitingRoomPanel extends JPanel {
 						
 		back = new JButton("Cancel");
 		back.addActionListener(wrc);
-		isReady = new JButton("Ready?");
+		isReady = new JButton("Vote to Start");
 		isReady.addActionListener(wrc);
 		JPanel buttonPanel = new JPanel(new GridLayout(1, 2));
 		buttonPanel.add(back);

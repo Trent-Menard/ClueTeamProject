@@ -5,6 +5,7 @@ import game.Suspect;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Random;
 
 public class GameManager {
     private final Deck deck;
@@ -79,5 +80,12 @@ public class GameManager {
 
     public int getNumOfPlayersNeededToStart() {
         return numOfPlayersNeededToStart;
+    }
+    
+    // Function to simulate rolling a six-sided die
+    public static int rollDice() {
+        Random random = new Random();
+        // Generate a random number between 1 and 6 (inclusive) for a standard six-sided die
+        return random.nextInt(6) + 1;
     }
 }

@@ -27,7 +27,8 @@ public class WaitingRoomControl implements ActionListener {
 				ex.printStackTrace();
 			}
 	    }
-		if (command.equals("Ready")) {
+		if (command.equals("Vote to Start")) {
+			//Add 1 to playersVotedToStart on server side
 /*			WaitingRoomData data = new WaitingRoomData(true, this.client);
 			try {
 				client.sendToServer(data);

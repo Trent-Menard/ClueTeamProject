@@ -90,6 +90,7 @@ public class GameServer extends AbstractServer {
                     System.out.println("User is authenticated.");
 
                     Player player = new Player(loginData.getUsername(), loginData.getPassword());
+                    loginData.setPlayer(player);
                     gameManager.assignPlayerCharacter(player);
                     gameManager.setPlayersReady(gameManager.getPlayersReady() + 1);
                     gameManager.createPlayerDecks();
@@ -97,7 +98,7 @@ public class GameServer extends AbstractServer {
                     gameManager.addPlayer(player);
 
                     System.out.println("Players ready: " + gameManager.getPlayersReady());
-                    connectionToClient.sendToClient(player);
+                    connectionToClient.sendToClient(loginData);
                 } catch (IOException e) {
                     throw new RuntimeException(e);
                 }
@@ -142,13 +143,13 @@ public class GameServer extends AbstractServer {
                     System.out.println("Successfully created account!");
                     
                     Player player = new Player(createAccountData.getUsername(), createAccountData.getPassword());
-                    
+                    createAccountData.setPlayer(player);
                     gameManager.assignPlayerCharacter(player);
                     gameManager.setPlayersReady(gameManager.getPlayersReady() + 1);
 
                     gameManager.addPlayer(player);
-//                    gameManager.assignPlayerDeck(player);
-                    connectionToClient.sendToClient(player);
+                    gameManager.assignPlayerDeck(player);
+                    connectionToClient.sendToClient(createAccountData);
                     System.out.println("User's ID is: " + database.getUserID(createAccountData.getUsername()));
                 } catch (IOException e) {
                     throw new RuntimeException(e);
