@@ -106,7 +106,6 @@ public class ServerGUI extends JFrame {
         if (!server.isDBConnected()) {
             status.setText("Can't connect to database");
             log.append("[Error:] Can't connect to DB. Bypassing login for now.\n");
-            // TODO: 11/22/2023 Remove this; Bypass server start if can't connect to DB.
 //            listen.setEnabled(false);
         }
     }
@@ -141,7 +140,7 @@ public class ServerGUI extends JFrame {
                 boolean isValid = true;
 
                 // Display an error if the port number or timeout was not entered.
-                if (textFields[0].getText().equals("") || textFields[1].getText().equals("")) {
+                if (textFields[0].getText().isEmpty() || textFields[1].getText().isEmpty()) {
                     log.append("Port number or timeout not entered before pressing Listen\n");
                     isValid = false;
                 }

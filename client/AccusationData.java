@@ -15,8 +15,7 @@ public class AccusationData implements Serializable{
 		setWeapon(weapon);
 		setIsFinal(isFinal);
 	}
-	
-	
+
 	public String getSuspect() {
 		return suspect;
 	}

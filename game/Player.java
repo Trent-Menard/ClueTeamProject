@@ -5,9 +5,7 @@ import server.Deck;
 import java.io.Serializable;
 import java.util.List;
 
-
 public class Player implements Serializable {
-
     private final String username;
     private final String password;
     private int ID;

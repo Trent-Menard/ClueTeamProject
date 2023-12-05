@@ -38,5 +38,4 @@ public class AccusationControl implements ActionListener{
 			//you screwed up to get here
 		}
 	}
-
 }

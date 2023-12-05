@@ -13,6 +13,8 @@ import server.GameManager;
 import javax.swing.*;
 import java.awt.*;
 import java.io.IOException;
+import java.net.InetAddress;
+import java.net.UnknownHostException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -54,6 +56,11 @@ public class GameServer extends AbstractServer {
         status.setText("Listening");
         status.setForeground(Color.GREEN);
         log.append("Server started\n");
+        try {
+            log.append("Running on: " + InetAddress.getLocalHost().getHostAddress() + " with port: " + this.getPort() + "\n");
+        } catch (UnknownHostException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     // When the server stops listening, update the GUI.

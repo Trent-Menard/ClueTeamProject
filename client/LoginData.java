@@ -11,7 +11,6 @@ public class LoginData implements Serializable
 	private String password;
 	private String username;
 
-
 	// Getters for the username and password.
 	public String getUsername()
 	{

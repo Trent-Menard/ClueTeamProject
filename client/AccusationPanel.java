@@ -14,11 +14,11 @@ public class AccusationPanel extends JPanel{
 	
 	public AccusationPanel(AccusationControl ac) {
 		JPanel choicePanel = new JPanel(new GridLayout(1, 3));
-		suspects = new JComboBox<String>(suspectList);
+		suspects = new JComboBox<>(suspectList);
 		choicePanel.add(suspects);
-		rooms = new JComboBox<String>(roomList);
+		rooms = new JComboBox<>(roomList);
 		choicePanel.add(rooms);
-		weapons = new JComboBox<String>(weaponList);
+		weapons = new JComboBox<>(weaponList);
 		choicePanel.add(weapons);
 		
 		JPanel buttonPanel = new JPanel(new GridLayout(1, 2));
@@ -38,19 +38,15 @@ public class AccusationPanel extends JPanel{
 	}
 	
 	public String getSuspect() {
-		String toReturn = (String) suspects.getSelectedItem();
-		return toReturn;
+        return (String) suspects.getSelectedItem();
 	}
 	public String getRoom() {
-		String toReturn = (String) rooms.getSelectedItem();
-		return toReturn;
+        return (String) rooms.getSelectedItem();
 	}
 	public String getWeapon() {
-		String toReturn = (String) weapons.getSelectedItem();
-		return toReturn;
+        return (String) weapons.getSelectedItem();
 	}
 	public boolean getIsFinal() {
-		boolean toReturn = isFinal.isSelected();
-		return toReturn;
+        return isFinal.isSelected();
 	}
 }
