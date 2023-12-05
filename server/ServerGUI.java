@@ -109,7 +109,6 @@ public class ServerGUI extends JFrame {
             // TODO: 11/22/2023 Remove this; Bypass server start if can't connect to DB.
 //            listen.setEnabled(false);
         }
-
     }
 
     public static void main(String[] args) {

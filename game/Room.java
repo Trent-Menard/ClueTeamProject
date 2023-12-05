@@ -1,10 +1,10 @@
 package game;
 
 public class Room extends Card {
-    private final int rowStart;
-    private final int rowEnd;
-    private final int columnStart;
-    private final int columnEnd;
+    private int rowStart;
+    private int rowEnd;
+    private int columnStart;
+    private int columnEnd;
 
     public Room(String name, int rowStart, int rowEnd, int columnStart, int columnEnd) {
         super(name);
@@ -12,6 +12,10 @@ public class Room extends Card {
         this.rowEnd = rowEnd;
         this.columnStart = columnStart;
         this.columnEnd = columnEnd;
+    }
+
+    public Room(String name) {
+        super(name);
     }
 
     public int getRowStart() {

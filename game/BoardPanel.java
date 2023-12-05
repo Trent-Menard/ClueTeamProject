@@ -4,6 +4,7 @@ import javax.swing.*;
 import javax.swing.border.LineBorder;
 import javax.swing.plaf.basic.BasicButtonUI;
 import java.awt.*;
+import java.util.List;
 
 public class BoardPanel extends JFrame {
     private final int gridSize = 15;
@@ -66,7 +67,7 @@ public class BoardPanel extends JFrame {
         // Top 3 Rooms
         createRoomFromButtons(0, 3, 0, 3);
         gridButtons[1][1].setText("KITCHEN");
-        
+
         createRoomFromButtons(0,3,6,9);
         gridButtons[1][7].setText("BALLROOM");
 
@@ -96,5 +97,12 @@ public class BoardPanel extends JFrame {
 
     public JButton[][] getGridButtons() {
         return gridButtons;
+    }
+
+    public void drawWeapons(List<Weapon> weapons) {
+        for (Weapon weapon : weapons) {
+            ImageIcon ii = new ImageIcon("resources/weapons/" + weapon.getWeaponName() + ".png");
+            gridButtons[weapon.getXcoord()][weapon.getYcoord()].setIcon(ii);
+        }
     }
 }
