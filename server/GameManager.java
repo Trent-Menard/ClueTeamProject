@@ -11,20 +11,44 @@ public class GameManager {
     private int playersReady = 0;
     private int numOfPlayersNeededToStart;
     private final List<Player> players = new ArrayList<>();
-    private List<Suspect> suspects = new ArrayList<>();
+    private List<Suspect> suspects;
+    List<Deck> originalPlayerDecks = new ArrayList<>();
 
     public GameManager() {
         this.deck = new Deck();
         this.deck.categorizeCards();
         this.suspects = deck.getSuspects();
         this.deck.shuffle();
-    	this.deck.CreateEnvelope();
-    	
+        this.deck.CreateEnvelope();
+    }
+
+    public void createPlayerDecks() {
+
+        int numCardsPerPlayer = deck.getFullDeck().size() / numOfPlayersNeededToStart;
+        int numCardsRemaining = deck.getFullDeck().size() % numOfPlayersNeededToStart;
+
+        for (int i = 0; i < numOfPlayersNeededToStart; i++) {
+
+            // Distribute as evenly as possible (whole numbers)
+            Deck playerDeck = new Deck();
+            for (int j = 0; j < numCardsPerPlayer; j++) {
+                playerDeck.addCard(deck.getFullDeck().get(0));
+                deck.getFullDeck().remove(0);
+            }
+
+            // Distribute remaining cards
+            if (numCardsRemaining > 0) {
+                playerDeck.addCard(deck.getFullDeck().remove(0));
+                numCardsRemaining--;
+            }
+
+            originalPlayerDecks.add(playerDeck);
+        }
     }
 
     public void assignPlayerDeck(Player player) {
-    	deck.PlayerHand();
-    	player.setPlayerHand(deck.getPlayerHand());
+        player.setDeck(originalPlayerDecks.get(0));
+        originalPlayerDecks.remove(0);
     }
 
     public void assignPlayerCharacter(Player player) {
@@ -35,7 +59,6 @@ public class GameManager {
 
     public void addPlayer(Player player) {
         this.players.add(player);
-
     }
 
     public Deck getDeck() {

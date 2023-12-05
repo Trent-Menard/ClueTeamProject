@@ -3,7 +3,6 @@ package game;
 import server.Deck;
 
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.List;
 
 
@@ -40,7 +39,6 @@ public class Player implements Serializable {
     public Deck getDeck() {
         return deck;
     }
-
     public void setID(int ID) {
         this.ID = ID;
     }

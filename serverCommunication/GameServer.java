@@ -22,6 +22,7 @@ public class GameServer extends AbstractServer {
     private boolean running = false;
     private final Database database = new Database();
     private final boolean isDBConnected;
+    private int numOfPlayers;
     private GameManager gameManager;
 
     // Constructor for initializing the server with default settings.
@@ -30,6 +31,7 @@ public class GameServer extends AbstractServer {
         this.setTimeout(500);
         isDBConnected = database.isConnected();
         this.gameManager = new GameManager();
+        gameManager.setNumOfPlayersNeededToStart(numOfPlayers);
     }
 
     // Getter that returns whether the server is currently running.
@@ -90,10 +92,11 @@ public class GameServer extends AbstractServer {
                     Player player = new Player(loginData.getUsername(), loginData.getPassword());
                     gameManager.assignPlayerCharacter(player);
                     gameManager.setPlayersReady(gameManager.getPlayersReady() + 1);
+                    gameManager.createPlayerDecks();
+                    gameManager.assignPlayerDeck(player);
                     gameManager.addPlayer(player);
 
                     System.out.println("Players ready: " + gameManager.getPlayersReady());
-//                    gameManager.assignPlayerDeck(player);
                     connectionToClient.sendToClient(player);
                 } catch (IOException e) {
                     throw new RuntimeException(e);
@@ -171,6 +174,7 @@ public class GameServer extends AbstractServer {
     }
 
     public void setNumOfPlayers(int numOfPlayers) {
+        this.numOfPlayers = numOfPlayers;
         this.gameManager.setNumOfPlayersNeededToStart(numOfPlayers);
     }
 }
