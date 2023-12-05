@@ -50,6 +50,7 @@ public class ServerGUI extends JFrame {
         // Set some default values for the server.
         textFields[0].setText("8300");
         textFields[1].setText("500");
+        textFields[2].setText("2");
 
         // Buffer the grid of text fields and add it to the north part of the center.
         JPanel centerNorthBuffer = new JPanel();
@@ -137,26 +138,41 @@ public class ServerGUI extends JFrame {
 
             // Handle the Listen button.
             if (buttonClicked == listen) {
+
+                boolean isValid = true;
+
                 // Display an error if the port number or timeout was not entered.
                 if (textFields[0].getText().equals("") || textFields[1].getText().equals("")) {
                     log.append("Port number or timeout not entered before pressing Listen\n");
+                    isValid = false;
                 }
 
-                // Otherwise, tell the server to start listening with the user's settings.
-                else {
-                    if (textFields[2].getText().isBlank()) {
-                        log.append("Missing # of Players.\n");
-                    } else {
-                        numOfPlayers = Integer.parseInt(textFields[2].getText());
-                        server.setNumOfPlayers(numOfPlayers);
+                if (textFields[2].getText().isBlank()) {
+                    log.append("Missing # of Players.\n");
+                    isValid = false;
+                }
 
-                        server.setPort(Integer.parseInt(textFields[0].getText()));
-                        server.setTimeout(Integer.parseInt(textFields[1].getText()));
-                        try {
-                            server.listen();
-                        } catch (IOException e1) {
-                            log.append("An exception occurred: " + e1.getMessage() + "\n");
-                        }
+                numOfPlayers = Integer.parseInt(textFields[2].getText());
+
+                if (numOfPlayers < 2) {
+                    log.append("Minimum of 2 players required.\n");
+                    isValid = false;
+                }
+
+                if (numOfPlayers > 6) {
+                    log.append("Maximum of 6 players.\n");
+                    isValid = false;
+                }
+
+                if (isValid) {
+                    server.setNumOfPlayers(numOfPlayers);
+
+                    server.setPort(Integer.parseInt(textFields[0].getText()));
+                    server.setTimeout(Integer.parseInt(textFields[1].getText()));
+                    try {
+                        server.listen();
+                    } catch (IOException e1) {
+                        log.append("An exception occurred: " + e1.getMessage() + "\n");
                     }
                 }
             }

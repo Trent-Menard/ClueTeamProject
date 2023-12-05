@@ -6,19 +6,19 @@ import game.Suspect;
 import game.Weapon;
 
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-public class Deck {
+public class Deck implements Serializable {
     private final List<Room> rooms;
     private final List<Suspect> suspects;
     private final List<Weapon> weapons;
     private final List<Card> fullDeck;
     private final List<Card> envelope;
     private final List<Card> playerHand;
-   
-    
+
     // Constructor to initialize the lists
     public Deck() {
     	this.rooms = new ArrayList<>();
@@ -70,56 +70,14 @@ public class Deck {
     }
     
     public void CreateEnvelope() {
-    	
     	envelope.add(rooms.get(0));
     	envelope.add(suspects.get(0));
     	envelope.add(weapons.get(0));
     	fullDeck.remove(rooms.get(0));
     	fullDeck.remove(suspects.get(0));
     	fullDeck.remove(weapons.get(0));
-    	
-      	
     }
-    
-    public void PlayerHand() {
-    	
-    //Ensures that only one set of three cards is in the set and it doesn't multiply
-    	playerHand.removeAll(playerHand);   
-    	
-    	//Creates a fresh player hand of three cards.
-    	if (playerHand.isEmpty())
-    	{
-        	double randomValue = Math.random();
-        	
-        	
-        	int minr = 1; // Minimum value of range
-            int maxr = (fullDeck.size()-1); // Maximum value of range
-            int r = minr + (int) (randomValue * ((maxr - minr) + 1));
-            
-            int mins = 1; // Minimum value of range
-            int maxs = (fullDeck.size()-1); // Maximum value of range
-            int s = mins + (int) (randomValue * ((maxs - mins) + 1));
-            
-            int minw = 1; // Minimum value of range
-            int maxw = (fullDeck.size()-1); // Maximum value of range
-            int w = minw + (int) (randomValue * ((maxw - minw) + 1));
-          
-        	
-        	playerHand.add(fullDeck.get(r));
-         	fullDeck.remove(fullDeck.get(r));
-        	playerHand.add(fullDeck.get(s));
-           	fullDeck.remove(fullDeck.get(s));
-        	playerHand.add(fullDeck.get(w));
-        	fullDeck.remove(fullDeck.get(w));
-   
-     
-        	
-    	}
-        
-    	
-    	
 
-    }
     // Getter functions for rooms, suspects, fullDeck, and weapons
     public List<Room> getRooms() {
     	return rooms;
@@ -144,25 +102,20 @@ public class Deck {
     public List<Card> getFullDeck() {
     	return fullDeck;
     }
-    
-    // This is a test main to ensure that the playerhands are being created and they are different from the envelope
-   /* public static void main(String[] args) {
-    	Deck deck = new Deck();
-    	deck.categorizeCards();
-    	deck.shuffle();
-    	deck.CreateEnvelope();
-    	deck.PlayerHand();
-    	// Example usage of getter functions
-    	System.out.println("Hand 1" + deck.getPlayerHand());
-    	deck.PlayerHand();
-    	System.out.println("Hand 2" + deck.getPlayerHand());
-    	deck.PlayerHand();
-    	System.out.println("Hand 3" + deck.getPlayerHand());
-    	deck.PlayerHand();
-     	System.out.println("Hand 4" + deck.getPlayerHand());
-    	deck.PlayerHand();
-     	System.out.println("Hand 5" + deck.getPlayerHand());
-     	
-     	System.out.println("This is the Envelope" + deck.getEnvelope());
-    }*/
+
+	public void addCard(Card card) {
+		if (card instanceof Room) {
+			this.rooms.add((Room) card);
+		}
+
+		if (card instanceof Suspect) {
+			this.suspects.add((Suspect) card);
+		}
+
+		if (card instanceof Weapon) {
+			this.weapons.add((Weapon) card);
+		}
+
+		this.fullDeck.add(card);
+	}
 }

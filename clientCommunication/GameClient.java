@@ -33,6 +33,21 @@ public class GameClient extends AbstractClient {
 
 			this.loginControl.loginSuccess();
 			waitingRoomControl.updateMsg("Your character: " + player.getCharacter());
+
+			// Override (or set for the first time) the Player's deck.
+			player.setDeck(playerMsg.getDeck());
+			System.out.println(player.getUsername() + "'s deck:");
+
+			System.out.println("- Rooms: ");
+			player.getDeck().getRooms().forEach(s -> System.out.println(" - "+ s.getRoomName()));
+
+			System.out.println("- Suspects:");
+			player.getDeck().getSuspects().forEach(s -> System.out.println(" - "+ s.getSuspectName()));
+
+			System.out.println("- Weapons:");
+			player.getDeck().getWeapons().forEach(s -> System.out.println(" - "+ s.getWeaponName()));
+
+
 //			WaitingRoomPanel waitingRoomPanel = (WaitingRoomPanel) waitingRoomControl.getContainer();
 //			waitingRoomPanel.setMsg("You are character: " + player.getCharacter());
 		}
