@@ -12,6 +12,11 @@ public class Weapon extends Card {
         this.yCoord = yCoord;
     }
 
+    public Weapon(String name) {
+        super(name);
+        this.weaponName = name;
+    }
+
     public String getWeaponName() {
         return weaponName;
     }

@@ -7,7 +7,6 @@ import game.*;
 import client.*;
 
 public class GameClient extends AbstractClient {
-
 	private LoginControl loginControl;
 	private CreateAccountControl createAccountControl;
 	private WaitingRoomControl waitingRoomControl;
@@ -42,7 +41,7 @@ public class GameClient extends AbstractClient {
 			player.getDeck().getRooms().forEach(s -> System.out.println(" - "+ s.getRoomName()));
 
 			System.out.println("- Suspects:");
-			player.getDeck().getSuspects().forEach(s -> System.out.println(" - "+ s.getSuspectName()));
+			player.getDeck().getSuspects().forEach(s -> System.out.println(" - "+ s.getCardName()));
 
 			System.out.println("- Weapons:");
 			player.getDeck().getWeapons().forEach(s -> System.out.println(" - "+ s.getWeaponName()));

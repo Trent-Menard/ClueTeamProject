@@ -53,7 +53,7 @@ public class GameManager {
 
     public void assignPlayerCharacter(Player player) {
     	Collections.shuffle(suspects);
-        player.setCharacter(suspects.get(0).getSuspectName());
+        player.setCharacter(suspects.get(0).getCardName());
         suspects.remove(0);
     }
 
