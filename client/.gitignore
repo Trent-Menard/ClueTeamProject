@@ -26,3 +26,6 @@
 /PlayerTurnPanel.class
 /PlayerTurnControl.class
 /PlayerTurnData.class
+/GatherIntelPanel.class
+/GatherIntelData.class
+/GatherIntelControl.class

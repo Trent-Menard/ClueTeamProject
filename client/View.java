@@ -7,5 +7,6 @@ public enum View {
     CREATE_ACCOUNT,
     WAITING_ROOM,
     ACCUSATION_PANEL,
-    PLAYER_TURN
+    PLAYER_TURN,
+    GATHER_INTEL
 }
