@@ -31,11 +31,9 @@ public class PlayerTurnControl implements ActionListener{
 		}
 		else if(command.equals("Roll Dice")) {
 			pdt = new PlayerTurnData(command);
-			try {
-				client.sendToServer(pdt);
-			} catch (IOException e1) {
-				e1.printStackTrace();
-			}
+			
+				pdt.getPlayerRoll();			
+		
 		}
 		else if(command.equals("Make Accusation/Suggestion")) {
 			CardLayout cardLayout = (CardLayout) container.getLayout();
