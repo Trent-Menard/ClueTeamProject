@@ -88,4 +88,8 @@ public class GameManager {
         // Generate a random number between 1 and 6 (inclusive) for a standard six-sided die
         return random.nextInt(6) + 1;
     }
+
+    public List<Player> getPlayers() {
+        return this.players;
+    }
 }

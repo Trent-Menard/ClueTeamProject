@@ -17,7 +17,6 @@ public class ClientGUI extends JFrame {
 
         BoardPanel bp = new BoardPanel();
         BoardController bc = new BoardController(bp, client);
-        bc.randomizeWeapons();
         bp.setVisible(true);
         // Not until game starts
 

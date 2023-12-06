@@ -1,28 +1,17 @@
 package game;
 
 public class Weapon extends Card {
-    private String weaponName;
     private int xCoord;
     private int yCoord;
 
     public Weapon(String name, int xCoord, int yCoord) {
         super(name);
-        this.weaponName = name;
         this.xCoord = xCoord;
         this.yCoord = yCoord;
     }
 
     public Weapon(String name) {
         super(name);
-        this.weaponName = name;
-    }
-
-    public String getWeaponName() {
-        return weaponName;
-    }
-
-    public void setWeaponName(String weaponName) {
-        this.weaponName = weaponName;
     }
 
     public int getXcoord() {
@@ -42,7 +31,7 @@ public class Weapon extends Card {
     }
 
     public boolean isInRoom(String roomName) {
-        if (roomName.contains(weaponName))
+        if (roomName.contains(this.getCardName()))
         {
         	return true;
         }
@@ -52,4 +41,3 @@ public class Weapon extends Card {
         }
     }
 }
-

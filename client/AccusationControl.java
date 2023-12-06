@@ -9,12 +9,12 @@ import clientCommunication.*;
 public class AccusationControl implements ActionListener{
 	private final JPanel container;
 	private final GameClient client;
-	
+
 	public AccusationControl(JPanel container, GameClient client) {
 		this.container = container;
 		this.client = client;
 	}
-	
+
 	public void actionPerformed(ActionEvent e) {
 		String command = e.getActionCommand();
 		if(command.equals("Confirm")) {
@@ -23,11 +23,16 @@ public class AccusationControl implements ActionListener{
 			String room = ap.getRoom();
 			String suspect = ap.getSuspect();
 			boolean isFinal = ap.getIsFinal();
-			AccusationData data = new AccusationData(suspect, room, weapon, isFinal);
-			try {
-				client.sendToServer(data);
-			} catch (IOException e1) {
-				e1.printStackTrace();
+			if(weapon.equals("Please Select a Weapon")||room.equals("Please Select a Room")||suspect.equals("Please Select a Suspect")) {
+				ap.setError("Please be sure to select a suspect, a room, and a weapon.");
+			}
+			else {
+				AccusationData data = new AccusationData(suspect, room, weapon, isFinal);
+				try {
+					client.sendToServer(data);
+				} catch (IOException e1) {
+					e1.printStackTrace();
+				}
 			}
 		}
 		else if(command.equals("Cancel")) {

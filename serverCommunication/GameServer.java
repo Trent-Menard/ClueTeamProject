@@ -4,6 +4,8 @@ import client.CreateAccountData;
 import client.LoginData;
 import client.WaitingRoomData;
 import database.Database;
+import game.BoardController;
+import game.BoardData;
 import game.Player;
 import game.Suspect;
 import ocsf.server.AbstractServer;
@@ -27,6 +29,8 @@ public class GameServer extends AbstractServer {
     private final boolean isDBConnected;
     private int numOfPlayers;
     private GameManager gameManager;
+    private BoardController boardController;
+    private BoardData boardData = new BoardData();
     private DataNeededForClient dataNeededForClient;
 
     // Constructor for initializing the server with default settings.
@@ -105,10 +109,13 @@ public class GameServer extends AbstractServer {
                     gameManager.addPlayer(player);
                     loginData.setPlayer(player);
 
+                    boardData.setPlayers(gameManager.getPlayers());
+
                     dataNeededForClient.setPlayersReady(gameManager.getPlayersReady());
 
                     if (gameManager.getNumOfPlayersNeededToStart() == gameManager.getPlayersReady()) {
                         dataNeededForClient.setStarting(true);
+                        boardController.setPlayerPositions();
                         System.out.println("Starting the game!");
                     }
 
@@ -194,5 +201,12 @@ public class GameServer extends AbstractServer {
         this.numOfPlayers = numOfPlayers;
         this.gameManager.setNumOfPlayersNeededToStart(numOfPlayers);
         this.dataNeededForClient.setPlayersNeededToStart(numOfPlayers);
+    }
+
+    public void setBoardController(BoardController bc){
+        this.boardController = bc;
+        boardData = new BoardData();
+        boardController.setBoardData(boardData);
+        boardController.randomizeWeapons();
     }
 }

@@ -4,21 +4,25 @@ import java.awt.*;
 import javax.swing.*;
 
 public class AccusationPanel extends JPanel{
-	private String[] roomList = {"Kitchen", "Ballroom", "Conservatory", "Dining Room", "Billiard Room", "Lounge", "Hall", "Study"};
-	private String[] weaponList = {"Candlestick", "Revolver", "Dagger", "Lead Pipe", "Wrench", "Rope"};
-	private String[] suspectList = {"Colonel Mustard", "Miss Scarlet", "Mrs. Peacock", "Dr. Orchid", "Professor Plum", "Reverend Green"};
+	private String[] roomList = {"Please Select a Room", "Kitchen", "Ballroom", "Conservatory", "Dining Room", "Billiard Room", "Lounge", "Hall", "Study"};
+	private String[] weaponList = {"Please Select a Weapon", "Candlestick", "Revolver", "Dagger", "Lead Pipe", "Wrench", "Rope"};
+	private String[] suspectList = {"Please Select a Suspect", "Colonel Mustard", "Miss Scarlet", "Mrs. Peacock", "Dr. Orchid", "Professor Plum", "Reverend Green"};
 	JComboBox<String> suspects;
 	JComboBox<String> weapons;
 	JComboBox<String> rooms;
 	JCheckBox isFinal;
+	JLabel error = new JLabel();
 	
-	public AccusationPanel(AccusationControl ac) {
+	public AccusationPanel(AccusationControl ac) {		
 		JPanel choicePanel = new JPanel(new GridLayout(1, 3));
 		suspects = new JComboBox<>(suspectList);
+		suspects.setSelectedIndex(0);
 		choicePanel.add(suspects);
 		rooms = new JComboBox<>(roomList);
+		rooms.setSelectedIndex(0);
 		choicePanel.add(rooms);
 		weapons = new JComboBox<>(weaponList);
+		weapons.setSelectedIndex(0);
 		choicePanel.add(weapons);
 		
 		JPanel buttonPanel = new JPanel(new GridLayout(1, 2));
@@ -32,7 +36,8 @@ public class AccusationPanel extends JPanel{
 		cancel.addActionListener(ac);
 		confirm.addActionListener(ac);
 
-		this.setLayout(new GridLayout(2, 1));
+		this.setLayout(new GridLayout(3, 1));
+		this.add(error);
 		this.add(choicePanel);
 		this.add(buttonPanel);
 	}
@@ -48,5 +53,9 @@ public class AccusationPanel extends JPanel{
 	}
 	public boolean getIsFinal() {
         return isFinal.isSelected();
+	}
+	public void setError(String error) {
+		this.error.setText(error);
+		this.error.setForeground(new Color(255, 0, 0));
 	}
 }

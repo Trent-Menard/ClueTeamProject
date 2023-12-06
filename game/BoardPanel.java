@@ -10,9 +10,19 @@ import java.util.List;
 public class BoardPanel extends JFrame {
     private final int gridSize = 15;
     private final JButton[][] gridButtons = new JButton[gridSize][gridSize];
-    private List<Room> rooms;
+    private List<Room> rooms = new ArrayList<>();
+    private List<String> roomNames = new ArrayList<>();
     public BoardPanel() {
-    	this.rooms = new ArrayList<>();
+        this.roomNames.add("Kitchen");
+        this.roomNames.add("Ballroom");
+        this.roomNames.add("Conservatory");
+        this.roomNames.add("Dining Room");
+        this.roomNames.add("?");
+        this.roomNames.add("Billard Room");
+        this.roomNames.add("Lounge");
+        this.roomNames.add("Hall");
+        this.roomNames.add("Study");
+
         createBoard();
         createRooms();
         setVisible(true);
@@ -57,55 +67,52 @@ public class BoardPanel extends JFrame {
         setLocationRelativeTo(null);
     }
 
-    private void createRoomFromButtons(int rowStart, int rowEnd, int columnStart, int columnEnd) {
+    private void createRoomFromButtons(String roomName, int rowStart, int rowEnd, int columnStart, int columnEnd) {
+        Room room = new Room(roomName);
         for (int rs = rowStart; rs < rowEnd; rs++) {
             for(int cs = columnStart; cs < columnEnd; cs++){
                 gridButtons[rs][cs].setBorder(new LineBorder(Color.RED, 3));
+                room.addXCoordinate(rs);
+                room.addYCoordinate(cs);
             }
         }
+        this.rooms.add(room);
+    }
+
+    public List<Room> getRooms() {
+        return rooms;
     }
 
     private void createRooms() {
+            // Top 3 Rooms
+            createRoomFromButtons("Kitchen", 0, 3, 0, 3);
+            gridButtons[1][1].setText("Kitchen");
 
-        // Top 3 Rooms
-        createRoomFromButtons(0, 3, 0, 3);
-        gridButtons[1][1].setText("KITCHEN");
-        rooms.add(new Room("Kitchen", 0, 3, 0, 3));
+            createRoomFromButtons("Ballroom",0,3,6,9);
+            gridButtons[1][7].setText("Ballroom");
 
-        createRoomFromButtons(0,3,6,9);
-        gridButtons[1][7].setText("BALLROOM");
-        rooms.add(new Room("Ballroom", 0, 3, 6, 9));
-        
-        createRoomFromButtons(0, 3, 12, 15);
-        gridButtons[1][13].setText("CONSERVATORY");
-        rooms.add(new Room("Conservatory", 0, 3, 12, 15));
+            createRoomFromButtons("Conservatory",0, 3, 12, 15);
+            gridButtons[1][13].setText("Conservatory");
 
-        // Middle 3 Rooms
-        createRoomFromButtons(6, 9, 0, 3);
-        gridButtons[7][1].setText("DINING ROOM");
-        rooms.add(new Room("Dining Room", 6, 9, 0, 3));
-        
-        createRoomFromButtons(6, 9, 6, 9);
-        gridButtons[7][7].setText("?");
-        rooms.add(new Room("?", 6, 9, 6, 9));
-        rooms.add(new Room("?", 6, 9, 6, 9));
-        
-        createRoomFromButtons(6, 9, 12, 15);
-        gridButtons[7][13].setText("BILLIARD ROOM");
-        rooms.add(new Room("Billard Room", 6, 9, 12, 15));
+            // Middle 3 Rooms
+            createRoomFromButtons("Dining Room",6, 9, 0, 3);
+            gridButtons[7][1].setText("Dining Room");
 
-        // Bottom 3 Rooms
-        createRoomFromButtons(12, 15, 0, 3);
-        gridButtons[13][1].setText("LOUNGE");
-        rooms.add(new Room("Lounge", 12, 15, 0, 3));
+            createRoomFromButtons("?",6, 9, 6, 9);
+            gridButtons[7][7].setText("?");
 
-        createRoomFromButtons(12, 15, 6, 9);
-        gridButtons[13][7].setText("HALL");
-        rooms.add(new Room("Hall", 12, 15, 6, 9));
+            createRoomFromButtons("Billard Room",6, 9, 12, 15);
+            gridButtons[7][13].setText("Billard Room");
 
-        createRoomFromButtons(12, 15, 12, 15);
-        gridButtons[13][13].setText("STUDY");
-        rooms.add(new Room("Study", 12, 15, 12, 15));
+            // Bottom 3 Rooms
+            createRoomFromButtons("Lounge",12, 15, 0, 3);
+            gridButtons[13][1].setText("Lounge");
+
+            createRoomFromButtons("Hall",12, 15, 6, 9);
+            gridButtons[13][7].setText("Hall");
+
+            createRoomFromButtons("Study",12, 15, 12, 15);
+            gridButtons[13][13].setText("Study");
     }
 
     public JButton[][] getGridButtons() {
@@ -114,7 +121,7 @@ public class BoardPanel extends JFrame {
 
     public void drawWeapons(List<Weapon> weapons) {
         for (Weapon weapon : weapons) {
-            ImageIcon ii = new ImageIcon("resources/weapons/Small" + weapon.getWeaponName() + ".png");
+            ImageIcon ii = new ImageIcon("resources/weapons/Small" + weapon.getCardName() + ".png");
             gridButtons[weapon.getXcoord()][weapon.getYcoord()].setIcon(ii);
         }
     }
