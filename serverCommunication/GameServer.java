@@ -189,8 +189,12 @@ public class GameServer extends AbstractServer {
                     throw new RuntimeException(e);
                 }
             }
+//            if(gameManager.getPlayersReady() == gameManager.getNumOfPlayersNeededToStart()) {
+//            	code for start game?
+//            }
         }
         else if (object instanceof WaitingRoomData waitingRoomData) {
+        	
         }
     }
 

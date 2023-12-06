@@ -10,7 +10,7 @@ public class WaitingRoomData implements Serializable {
 	//private String character;
 	private GameClient client;
 	
-	WaitingRoomData(boolean ready, GameClient myClient/*, String character*/){
+	WaitingRoomData(boolean ready, GameClient myClient){
 		setReady(ready);
 		setClient(myClient);
 		//setCharacter(character);
