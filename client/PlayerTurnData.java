@@ -4,7 +4,7 @@ import java.io.*;
 
 public class PlayerTurnData implements Serializable{
 	private String turnType;
-	private int rollValue;
+	private int rollNumber;
 	
 	public PlayerTurnData(String turnType) {
 		setTurnType(turnType);
@@ -17,9 +17,9 @@ public class PlayerTurnData implements Serializable{
 		this.turnType = turnType;
 	}
 	public int getRoll() {
-		return rollValue;
+		return rollNumber;
 	}
 	public void setRoll(int roll) {
-		this.rollValue = roll;
+		this.rollNumber = roll;
 	}
 }

@@ -204,9 +204,14 @@ public class GameServer extends AbstractServer {
         	{
         	//Roll Dice
         	playerTurn.setRoll(gameManager.rollDice());
-        	connectionToClient.sendToClient(playerTurn);
-        	
-        	}
+        	try {
+				connectionToClient.sendToClient(playerTurn);
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+        }
+        }
     }
 
     public boolean isDBConnected() {
