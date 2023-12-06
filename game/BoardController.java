@@ -20,6 +20,7 @@ public class BoardController implements ActionListener {
 
     public BoardController(BoardPanel boardPanel) {
         this.boardPanel = boardPanel;
+        
     }
 
     public BoardController(BoardPanel boardPanel, int row, int col) {
