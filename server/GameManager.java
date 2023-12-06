@@ -83,9 +83,16 @@ public class GameManager {
     }
     
     // Function to simulate rolling a six-sided die
-    public static int rollDice() {
+    public int rollDice() {
         Random random = new Random();
         // Generate a random number between 1 and 6 (inclusive) for a standard six-sided die
         return random.nextInt(6) + 1;
+    }
+
+    public List<Player> getPlayers() {
+        return this.players;
+    }
+    public void determinePlayerOrder(List<Player> playerList) {
+        Collections.shuffle(playerList, new Random());
     }
 }

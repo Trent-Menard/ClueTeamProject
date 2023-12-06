@@ -11,6 +11,8 @@ public class GameClient extends AbstractClient {
 	private LoginControl loginControl;
 	private CreateAccountControl createAccountControl;
 	private WaitingRoomControl waitingRoomControl;
+	private BoardPanel boardPanel;
+	private BoardController boardController;
 	private Player player;
 
 	public GameClient() {
@@ -39,14 +41,13 @@ public class GameClient extends AbstractClient {
 			System.out.println(player.getUsername() + "'s deck:");
 
 			System.out.println("- Rooms: ");
-			player.getDeck().getRooms().forEach(s -> System.out.println(" - "+ s.getRoomName()));
+			player.getDeck().getRooms().forEach(s -> System.out.println(" - "+ s.getCardName()));
 
 			System.out.println("- Suspects:");
 			player.getDeck().getSuspects().forEach(s -> System.out.println(" - "+ s.getCardName()));
 
 			System.out.println("- Weapons:");
-			player.getDeck().getWeapons().forEach(s -> System.out.println(" - "+ s.getWeaponName()));
-
+			player.getDeck().getWeapons().forEach(s -> System.out.println(" - "+ s.getCardName()));
 
 			//			WaitingRoomPanel waitingRoomPanel = (WaitingRoomPanel) waitingRoomControl.getContainer();
 			//			waitingRoomPanel.setMsg("You are character: " + player.getCharacter());
@@ -63,6 +64,16 @@ public class GameClient extends AbstractClient {
 
 		else if (msg instanceof DataNeededForClient dataNeededForClient) {
 			this.waitingRoomControl.updateStatusMsg(dataNeededForClient.getPlayersReady() + "/" + dataNeededForClient.getPlayersNeededToStart() + " players needed to start");
+		}
+
+		else if (msg instanceof BoardData boardData) {
+			this.boardController.setBoardData(boardData);
+			this.boardController.getBoardPanel().setBoardData(boardData);
+			this.boardController.getBoardPanel().drawWeapons();
+			this.boardController.getBoardPanel().drawPlayerPositions();
+
+			this.boardPanel = boardController.getBoardPanel();
+			this.boardPanel.setVisible(true);
 		}
 
 		else if (msg instanceof Suspect) {
@@ -85,5 +96,13 @@ public class GameClient extends AbstractClient {
 
 	public Player getPlayer() {
 		return this.player;
+	}
+
+	public void setBoardPanel(BoardPanel boardPanel) {
+		this.boardPanel = boardPanel;
+	}
+
+	public void setBoardControl(BoardController bc) {
+		this.boardController = bc;
 	}
 }

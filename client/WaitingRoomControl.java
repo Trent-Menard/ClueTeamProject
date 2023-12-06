@@ -29,12 +29,12 @@ public class WaitingRoomControl implements ActionListener {
 	    }
 		if (command.equals("Vote to Start")) {
 			//Add 1 to playersVotedToStart on server side
-/*			WaitingRoomData data = new WaitingRoomData(true, this.client);
+			WaitingRoomData data = new WaitingRoomData(true, this.client);
 			try {
 				client.sendToServer(data);
 			} catch (IOException ex) {
 				ex.printStackTrace();
-			}*/
+			}
 		}
 	}
 
@@ -63,12 +63,4 @@ public class WaitingRoomControl implements ActionListener {
 		WaitingRoomPanel waitingRoomPanel = (WaitingRoomPanel) container.getComponent(View.WAITING_ROOM.ordinal());
 		waitingRoomPanel.setGameStatusMsg(msg);
 	}
-
-//	public void setCharacter(String character) {
-//		this.character = character;
-//	}
-//	
-//	public String getCharacter() {
-//		return character;
-//	}
 }

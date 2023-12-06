@@ -4,6 +4,8 @@ import client.CreateAccountData;
 import client.LoginData;
 import client.WaitingRoomData;
 import database.Database;
+import game.BoardController;
+import game.BoardData;
 import game.Player;
 import game.Suspect;
 import ocsf.server.AbstractServer;
@@ -27,6 +29,8 @@ public class GameServer extends AbstractServer {
     private final boolean isDBConnected;
     private int numOfPlayers;
     private GameManager gameManager;
+//    private BoardController boardController;
+    private BoardData boardData;
     private DataNeededForClient dataNeededForClient;
 
     // Constructor for initializing the server with default settings.
@@ -36,6 +40,9 @@ public class GameServer extends AbstractServer {
         isDBConnected = database.isConnected();
         this.gameManager = new GameManager();
         this.dataNeededForClient = new DataNeededForClient();
+        boardData = new BoardData();
+        boardData.createBoard();
+        boardData.randomizeWeapons();
     }
 
     // Getter that returns whether the server is currently running.
@@ -105,11 +112,21 @@ public class GameServer extends AbstractServer {
                     gameManager.addPlayer(player);
                     loginData.setPlayer(player);
 
+                    boardData.setPlayers(gameManager.getPlayers());
+
                     dataNeededForClient.setPlayersReady(gameManager.getPlayersReady());
 
                     if (gameManager.getNumOfPlayersNeededToStart() == gameManager.getPlayersReady()) {
                         dataNeededForClient.setStarting(true);
+//                        boardController.setPlayerPositions();
+//                        connectionToClient.sendToClient(boardController.getBoardPanel());
                         System.out.println("Starting the game!");
+
+                        boardData.setPlayers(gameManager.getPlayers());
+
+                        // TODO: 12/6/2023 TELL CLIENT TO DRAW FROM RECEIVED DATA
+//                        boardData.drawPlayerPositions();
+                        connectionToClient.sendToClient(boardData);
                     }
 
                     System.out.println("Players ready: " + gameManager.getPlayersReady() + "/" + gameManager.getNumOfPlayersNeededToStart());
@@ -172,8 +189,12 @@ public class GameServer extends AbstractServer {
                     throw new RuntimeException(e);
                 }
             }
+//            if(gameManager.getPlayersReady() == gameManager.getNumOfPlayersNeededToStart()) {
+//            	code for start game?
+//            }
         }
         else if (object instanceof WaitingRoomData waitingRoomData) {
+        	
         }
     }
 
@@ -195,4 +216,11 @@ public class GameServer extends AbstractServer {
         this.gameManager.setNumOfPlayersNeededToStart(numOfPlayers);
         this.dataNeededForClient.setPlayersNeededToStart(numOfPlayers);
     }
+
+//    public void setBoardController(BoardController bc){
+//        this.boardController = bc;
+//        boardData = new BoardData();
+//        boardController.setBoardData(boardData);
+//        boardController.randomizeWeapons();
+//    }
 }
