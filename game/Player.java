@@ -9,6 +9,7 @@ public class Player implements Serializable {
     private final String username;
     private final String password;
     private int ID;
+	private int rollNumber;
     private String character;
     private Deck deck;
 	private List<Card> playerHand;
@@ -47,6 +48,14 @@ public class Player implements Serializable {
 
     public void setDeck(Deck deck) {
         this.deck = deck;
+    }
+    
+    public int getRoll() {
+        return rollNumber;
+    }
+
+    public void setRoll(int rollNumber) {
+        this.rollNumber = rollNumber;
     }
     
     public List<Card> getPlayerHand()
