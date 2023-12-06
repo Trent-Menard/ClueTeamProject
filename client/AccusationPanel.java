@@ -16,10 +16,13 @@ public class AccusationPanel extends JPanel{
 	public AccusationPanel(AccusationControl ac) {		
 		JPanel choicePanel = new JPanel(new GridLayout(1, 3));
 		suspects = new JComboBox<>(suspectList);
+		suspects.setSelectedIndex(0);
 		choicePanel.add(suspects);
 		rooms = new JComboBox<>(roomList);
+		rooms.setSelectedIndex(0);
 		choicePanel.add(rooms);
 		weapons = new JComboBox<>(weaponList);
+		weapons.setSelectedIndex(0);
 		choicePanel.add(weapons);
 		
 		JPanel buttonPanel = new JPanel(new GridLayout(1, 2));
