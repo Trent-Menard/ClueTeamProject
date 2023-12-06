@@ -92,4 +92,7 @@ public class GameManager {
     public List<Player> getPlayers() {
         return this.players;
     }
+    public void determinePlayerOrder(List<Player> playerList) {
+        Collections.shuffle(playerList, new Random());
+    }
 }
