@@ -11,7 +11,6 @@ public class Player implements Serializable {
     private int ID;
     private String character;
     private Deck deck;
-    private int rollNumber = 0;
 	private List<Card> playerHand;
 
     public Player(String username, String password) {
@@ -50,13 +49,6 @@ public class Player implements Serializable {
         this.deck = deck;
     }
     
-    public int getRoll() {
-        return rollNumber;
-    }
-    
-    public void setRoll(int rollNumber) {
-        this.rollNumber = rollNumber;
-    }
     public List<Card> getPlayerHand()
     {
     	return playerHand;
@@ -65,6 +57,4 @@ public class Player implements Serializable {
     public void setPlayerHand(List<Card> playerHand) {
         this.playerHand = playerHand;
     }
-
-
 }

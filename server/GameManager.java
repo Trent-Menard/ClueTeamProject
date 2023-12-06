@@ -57,7 +57,6 @@ public class GameManager {
         player.setCharacter(suspects.get(0).getCardName());
         suspects.remove(0);
     }
-    
 
     public void addPlayer(Player player) {
         this.players.add(player);
@@ -83,5 +82,10 @@ public class GameManager {
         return numOfPlayersNeededToStart;
     }
     
- 
+    // Function to simulate rolling a six-sided die
+    public static int rollDice() {
+        Random random = new Random();
+        // Generate a random number between 1 and 6 (inclusive) for a standard six-sided die
+        return random.nextInt(6) + 1;
+    }
 }

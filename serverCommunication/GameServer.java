@@ -6,7 +6,6 @@ import client.WaitingRoomData;
 import database.Database;
 import game.Player;
 import game.Suspect;
-import client.PlayerTurnData;
 import ocsf.server.AbstractServer;
 import ocsf.server.ConnectionToClient;
 import server.DataNeededForClient;
@@ -27,7 +26,6 @@ public class GameServer extends AbstractServer {
     private final Database database = new Database();
     private final boolean isDBConnected;
     private int numOfPlayers;
-    private int rollNumber=0;
     private GameManager gameManager;
     private DataNeededForClient dataNeededForClient;
 
@@ -176,11 +174,8 @@ public class GameServer extends AbstractServer {
             }
         }
         else if (object instanceof WaitingRoomData waitingRoomData) {
-        	
         }
-        }
-        
-    
+    }
 
     public boolean isDBConnected() {
         return isDBConnected;
