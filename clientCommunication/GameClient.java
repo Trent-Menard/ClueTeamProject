@@ -39,14 +39,13 @@ public class GameClient extends AbstractClient {
 			System.out.println(player.getUsername() + "'s deck:");
 
 			System.out.println("- Rooms: ");
-			player.getDeck().getRooms().forEach(s -> System.out.println(" - "+ s.getRoomName()));
+			player.getDeck().getRooms().forEach(s -> System.out.println(" - "+ s.getCardName()));
 
 			System.out.println("- Suspects:");
 			player.getDeck().getSuspects().forEach(s -> System.out.println(" - "+ s.getCardName()));
 
 			System.out.println("- Weapons:");
-			player.getDeck().getWeapons().forEach(s -> System.out.println(" - "+ s.getWeaponName()));
-
+			player.getDeck().getWeapons().forEach(s -> System.out.println(" - "+ s.getCardName()));
 
 			//			WaitingRoomPanel waitingRoomPanel = (WaitingRoomPanel) waitingRoomControl.getContainer();
 			//			waitingRoomPanel.setMsg("You are character: " + player.getCharacter());

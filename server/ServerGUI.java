@@ -1,5 +1,7 @@
 package server;
 
+import game.BoardController;
+import game.BoardPanel;
 import serverCommunication.GameServer;
 
 import javax.swing.*;
@@ -100,6 +102,11 @@ public class ServerGUI extends JFrame {
 
         // Set up the chat server object.
         server = new GameServer();
+
+        BoardPanel bp = new BoardPanel();
+        BoardController bc = new BoardController(bp);
+        server.setBoardController(bc);
+
         server.setLog(log);
         server.setStatus(status);
 
