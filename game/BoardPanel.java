@@ -4,12 +4,15 @@ import javax.swing.*;
 import javax.swing.border.LineBorder;
 import javax.swing.plaf.basic.BasicButtonUI;
 import java.awt.*;
+import java.util.ArrayList;
 import java.util.List;
 
 public class BoardPanel extends JFrame {
     private final int gridSize = 15;
     private final JButton[][] gridButtons = new JButton[gridSize][gridSize];
+    private List<Room> rooms;
     public BoardPanel() {
+    	this.rooms = new ArrayList<>();
         createBoard();
         createRooms();
         setVisible(true);
@@ -67,32 +70,41 @@ public class BoardPanel extends JFrame {
         // Top 3 Rooms
         createRoomFromButtons(0, 3, 0, 3);
         gridButtons[1][1].setText("KITCHEN");
+        rooms.add(new Room("Kitchen", 0, 3, 0, 3));
 
         createRoomFromButtons(0,3,6,9);
         gridButtons[1][7].setText("BALLROOM");
-
+        rooms.add(new Room("Ballroom", 0, 3, 6, 9));
+        
         createRoomFromButtons(0, 3, 12, 15);
         gridButtons[1][13].setText("CONSERVATORY");
+        rooms.add(new Room("Conservatory", 0, 3, 12, 15));
 
         // Middle 3 Rooms
         createRoomFromButtons(6, 9, 0, 3);
         gridButtons[7][1].setText("DINING ROOM");
-
+        rooms.add(new Room("Dining Room", 6, 9, 0, 3));
+        
         createRoomFromButtons(6, 9, 6, 9);
         gridButtons[7][7].setText("?");
-
+        rooms.add(new Room("?", 6, 9, 6, 9));
+        
         createRoomFromButtons(6, 9, 12, 15);
         gridButtons[7][13].setText("BILLIARD ROOM");
+        rooms.add(new Room("Billard Room", 6, 9, 12, 15));
 
         // Bottom 3 Rooms
         createRoomFromButtons(12, 15, 0, 3);
         gridButtons[13][1].setText("LOUNGE");
+        rooms.add(new Room("Lounge", 12, 15, 0, 3));
 
         createRoomFromButtons(12, 15, 6, 9);
         gridButtons[13][7].setText("HALL");
+        rooms.add(new Room("Hall", 12, 15, 6, 9));
 
         createRoomFromButtons(12, 15, 12, 15);
         gridButtons[13][13].setText("STUDY");
+        rooms.add(new Room("Study", 12, 15, 12, 15));
     }
 
     public JButton[][] getGridButtons() {
@@ -101,7 +113,7 @@ public class BoardPanel extends JFrame {
 
     public void drawWeapons(List<Weapon> weapons) {
         for (Weapon weapon : weapons) {
-            ImageIcon ii = new ImageIcon("resources/weapons/" + weapon.getWeaponName() + ".png");
+            ImageIcon ii = new ImageIcon("resources/weapons/Small" + weapon.getWeaponName() + ".png");
             gridButtons[weapon.getXcoord()][weapon.getYcoord()].setIcon(ii);
         }
     }
