@@ -3,6 +3,7 @@ package serverCommunication;
 import client.CreateAccountData;
 import client.LoginData;
 import client.WaitingRoomData;
+import client.PlayerTurnData;
 import database.Database;
 import game.BoardController;
 import game.BoardData;
@@ -196,6 +197,16 @@ public class GameServer extends AbstractServer {
         else if (object instanceof WaitingRoomData waitingRoomData) {
         	
         }
+        
+        else if (object instanceof PlayerTurnData playerTurn)
+        {
+        	if (playerTurn.getTurnType().equals("Roll Dice"))
+        	{
+        	//Roll Dice
+        	playerTurn.setRoll(gameManager.rollDice());
+        	connectionToClient.sendToClient(playerTurn);
+        	
+        	}
     }
 
     public boolean isDBConnected() {
