@@ -14,6 +14,7 @@ public class GameManager {
     private final List<Player> players = new ArrayList<>();
     private List<Suspect> suspects;
     List<Deck> originalPlayerDecks = new ArrayList<>();
+    private List<Player> playersCopy = new ArrayList<>();
 
     public GameManager() {
         this.deck = new Deck();
@@ -92,7 +93,13 @@ public class GameManager {
     public List<Player> getPlayers() {
         return this.players;
     }
+    public List<Player> getPlayerOrder(){
+    	return playersCopy;
+    }
     public void determinePlayerOrder(List<Player> playerList) {
-        Collections.shuffle(playerList, new Random());
+    	for(Player each : playerList) {
+    		playersCopy.add(each);
+    	}
+    	Collections.shuffle(playersCopy);
     }
 }
