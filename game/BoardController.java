@@ -92,6 +92,7 @@ public class BoardController implements ActionListener {
 
     public void setPlayerPositions() {
         for (Player character : this.boardData.getPlayers()) {
+            System.out.println(character.getCharacter());
             switch (character.getCharacter()) {
                 case "Dr. Orchid" -> boardPanel.getGridButtons()[0][4].setBackground(Color.PINK);
                 case "Reverend Green" -> boardPanel.getGridButtons()[0][10].setBackground(Color.GREEN);
@@ -132,5 +133,9 @@ public class BoardController implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         boardPanel.getGridButtons()[row][col].setBackground(Color.RED);
         JOptionPane.showMessageDialog(boardPanel, "Clicked on cell (" + row + ", " + col + ")");
+    }
+
+    public BoardPanel getBoardPanel() {
+        return boardPanel;
     }
 }

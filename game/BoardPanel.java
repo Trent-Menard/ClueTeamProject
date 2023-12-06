@@ -4,10 +4,11 @@ import javax.swing.*;
 import javax.swing.border.LineBorder;
 import javax.swing.plaf.basic.BasicButtonUI;
 import java.awt.*;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class BoardPanel extends JFrame {
+public class BoardPanel extends JFrame implements Serializable {
     private final int gridSize = 15;
     private final JButton[][] gridButtons = new JButton[gridSize][gridSize];
     private List<Room> rooms = new ArrayList<>();

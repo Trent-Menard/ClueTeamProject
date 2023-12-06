@@ -17,7 +17,8 @@ public class ClientGUI extends JFrame {
 
         BoardPanel bp = new BoardPanel();
         BoardController bc = new BoardController(bp, client);
-        bp.setVisible(true);
+        client.setBoardPanel(bp);
+        bp.setVisible(false);
         // Not until game starts
 
         // Create the card layout container.

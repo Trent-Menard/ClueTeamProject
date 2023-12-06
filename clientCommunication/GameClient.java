@@ -11,6 +11,7 @@ public class GameClient extends AbstractClient {
 	private LoginControl loginControl;
 	private CreateAccountControl createAccountControl;
 	private WaitingRoomControl waitingRoomControl;
+	private BoardPanel boardPanel;
 	private Player player;
 
 	public GameClient() {
@@ -64,6 +65,11 @@ public class GameClient extends AbstractClient {
 			this.waitingRoomControl.updateStatusMsg(dataNeededForClient.getPlayersReady() + "/" + dataNeededForClient.getPlayersNeededToStart() + " players needed to start");
 		}
 
+		else if (msg instanceof BoardPanel boardPanel2) {
+			this.boardPanel = boardPanel2;
+			this.boardPanel.setVisible(true);
+		}
+
 		else if (msg instanceof Suspect) {
 			Suspect character = (Suspect) msg;
 			player.setCharacter(character.getCardName());
@@ -84,5 +90,9 @@ public class GameClient extends AbstractClient {
 
 	public Player getPlayer() {
 		return this.player;
+	}
+
+	public void setBoardPanel(BoardPanel boardPanel) {
+		this.boardPanel = boardPanel;
 	}
 }

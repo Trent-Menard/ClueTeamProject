@@ -116,6 +116,7 @@ public class GameServer extends AbstractServer {
                     if (gameManager.getNumOfPlayersNeededToStart() == gameManager.getPlayersReady()) {
                         dataNeededForClient.setStarting(true);
                         boardController.setPlayerPositions();
+                        connectionToClient.sendToClient(boardController.getBoardPanel());
                         System.out.println("Starting the game!");
                     }
 

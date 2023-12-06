@@ -104,6 +104,7 @@ public class ServerGUI extends JFrame {
         server = new GameServer();
 
         BoardPanel bp = new BoardPanel();
+        bp.setVisible(false);
         BoardController bc = new BoardController(bp);
         server.setBoardController(bc);
 
