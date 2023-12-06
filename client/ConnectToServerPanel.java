@@ -7,8 +7,9 @@ public class ConnectToServerPanel extends JPanel{
 	JTextField ipBox;
 	JTextField portBox;
 	JLabel errorMsg;
-
-	ConnectToServerPanel(ConnectToServerControl ipc){
+	JButton connect;
+	
+	public ConnectToServerPanel(ConnectToServerControl ipc){
 		//Instructions
 		JPanel instructionPanel = new JPanel(new GridLayout(2, 1, 5, 5));
 		JLabel instructions = new JLabel("Please enter the Host's IP address and port number.");
@@ -33,7 +34,7 @@ public class ConnectToServerPanel extends JPanel{
 		
 		//Button
 		JPanel buttonBox = new JPanel(new GridLayout(1, 1, 5, 5));
-		JButton connect = new JButton("Connect");
+		connect = new JButton("Connect");
 		connect.addActionListener(ipc);
 		buttonBox.add(connect);
 		
@@ -44,12 +45,18 @@ public class ConnectToServerPanel extends JPanel{
 		this.add(buttonBox);	
 	}
 	
+	
 	public String getIP() {
 		return ipBox.getText();
 	}
 	
 	public String getPort() {
 		return portBox.getText();
+	}
+	
+	public JButton getButton() {
+		return connect;
+		
 	}
 
 	public void setErrorMsg(String errorMsg) {
