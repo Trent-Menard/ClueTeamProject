@@ -58,7 +58,12 @@ public class WaitingRoomControl implements ActionListener {
 		WaitingRoomPanel waitingRoomPanel = (WaitingRoomPanel) container.getComponent(View.WAITING_ROOM.ordinal());
 		waitingRoomPanel.setMsg(msg);
 	}
-	
+
+	public void updateStatusMsg(String msg) {
+		WaitingRoomPanel waitingRoomPanel = (WaitingRoomPanel) container.getComponent(View.WAITING_ROOM.ordinal());
+		waitingRoomPanel.setGameStatusMsg(msg);
+	}
+
 //	public void setCharacter(String character) {
 //		this.character = character;
 //	}

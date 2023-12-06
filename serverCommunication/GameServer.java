@@ -8,6 +8,7 @@ import game.Player;
 import game.Suspect;
 import ocsf.server.AbstractServer;
 import ocsf.server.ConnectionToClient;
+import server.DataNeededForClient;
 import server.GameManager;
 
 import javax.swing.*;
@@ -26,6 +27,7 @@ public class GameServer extends AbstractServer {
     private final boolean isDBConnected;
     private int numOfPlayers;
     private GameManager gameManager;
+    private DataNeededForClient dataNeededForClient;
 
     // Constructor for initializing the server with default settings.
     public GameServer() {
@@ -33,7 +35,7 @@ public class GameServer extends AbstractServer {
         this.setTimeout(500);
         isDBConnected = database.isConnected();
         this.gameManager = new GameManager();
-        gameManager.setNumOfPlayersNeededToStart(numOfPlayers);
+        this.dataNeededForClient = new DataNeededForClient();
     }
 
     // Getter that returns whether the server is currently running.
@@ -93,19 +95,26 @@ public class GameServer extends AbstractServer {
             // Account exists & Username & Password are valid.
             if (isVerified) {
                 try {
-//                    connectionToClient.sendToClient(loginData);
                     System.out.println("User is authenticated.");
 
                     Player player = new Player(loginData.getUsername(), loginData.getPassword());
-                    loginData.setPlayer(player);
                     gameManager.assignPlayerCharacter(player);
                     gameManager.setPlayersReady(gameManager.getPlayersReady() + 1);
                     gameManager.createPlayerDecks();
                     gameManager.assignPlayerDeck(player);
                     gameManager.addPlayer(player);
+                    loginData.setPlayer(player);
 
-                    System.out.println("Players ready: " + gameManager.getPlayersReady());
+                    dataNeededForClient.setPlayersReady(gameManager.getPlayersReady());
+
+                    if (gameManager.getNumOfPlayersNeededToStart() == gameManager.getPlayersReady()) {
+                        dataNeededForClient.setStarting(true);
+                        System.out.println("Starting the game!");
+                    }
+
+                    System.out.println("Players ready: " + gameManager.getPlayersReady() + "/" + gameManager.getNumOfPlayersNeededToStart());
                     connectionToClient.sendToClient(loginData);
+                    connectionToClient.sendToClient(dataNeededForClient);
                 } catch (IOException e) {
                     throw new RuntimeException(e);
                 }
@@ -150,21 +159,21 @@ public class GameServer extends AbstractServer {
                     System.out.println("Successfully created account!");
                     
                     Player player = new Player(createAccountData.getUsername(), createAccountData.getPassword());
-                    createAccountData.setPlayer(player);
                     gameManager.assignPlayerCharacter(player);
                     gameManager.setPlayersReady(gameManager.getPlayersReady() + 1);
-
-                    gameManager.addPlayer(player);
+                    gameManager.createPlayerDecks();
                     gameManager.assignPlayerDeck(player);
+                    gameManager.addPlayer(player);
+                    createAccountData.setPlayer(player);
                     connectionToClient.sendToClient(createAccountData);
                     System.out.println("User's ID is: " + database.getUserID(createAccountData.getUsername()));
+                    System.out.println("Players ready: " + gameManager.getPlayersReady() + "/" + gameManager.getNumOfPlayersNeededToStart());
                 } catch (IOException e) {
                     throw new RuntimeException(e);
                 }
             }
         }
         else if (object instanceof WaitingRoomData waitingRoomData) {
-        	
         }
     }
 
@@ -184,5 +193,6 @@ public class GameServer extends AbstractServer {
     public void setNumOfPlayers(int numOfPlayers) {
         this.numOfPlayers = numOfPlayers;
         this.gameManager.setNumOfPlayersNeededToStart(numOfPlayers);
+        this.dataNeededForClient.setPlayersNeededToStart(numOfPlayers);
     }
 }

@@ -5,6 +5,7 @@ import client.LoginControl;
 import ocsf.client.AbstractClient;
 import game.*;
 import client.*;
+import server.DataNeededForClient;
 
 public class GameClient extends AbstractClient {
 	private LoginControl loginControl;
@@ -51,16 +52,19 @@ public class GameClient extends AbstractClient {
 			//			waitingRoomPanel.setMsg("You are character: " + player.getCharacter());
 		}
 
-
-		else if (msg instanceof LoginData) {
-			LoginData myData = (LoginData) msg;
-			player = myData.getPlayer();
+		else if (msg instanceof LoginData loginData) {
+			player = loginData.getPlayer();
+			this.loginControl.loginSuccess();
 		}
-		else if (msg instanceof CreateAccountData) {
-			CreateAccountData myData = (CreateAccountData) msg;
-			player = myData.getPlayer();
-
+		else if (msg instanceof CreateAccountData createAccountData) {
+			player = createAccountData.getPlayer();
+			this.loginControl.loginSuccess();
 		}
+
+		else if (msg instanceof DataNeededForClient dataNeededForClient) {
+			this.waitingRoomControl.updateStatusMsg(dataNeededForClient.getPlayersReady() + "/" + dataNeededForClient.getPlayersNeededToStart() + " players needed to start");
+		}
+
 		else if (msg instanceof Suspect) {
 			Suspect character = (Suspect) msg;
 			player.setCharacter(character.getCardName());

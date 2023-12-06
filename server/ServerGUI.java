@@ -152,10 +152,11 @@ public class ServerGUI extends JFrame {
 
                 numOfPlayers = Integer.parseInt(textFields[2].getText());
 
-                if (numOfPlayers < 2) {
-                    log.append("Minimum of 2 players required.\n");
-                    isValid = false;
-                }
+                // TODO: 12/5/2023 Add this back; need to be able to test 1 client atm.
+//                if (numOfPlayers < 2) {
+//                    log.append("Minimum of 2 players required.\n");
+//                    isValid = false;
+//                }
 
                 if (numOfPlayers > 6) {
                     log.append("Maximum of 6 players.\n");
