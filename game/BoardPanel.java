@@ -88,6 +88,7 @@ public class BoardPanel extends JFrame {
         createRoomFromButtons(6, 9, 6, 9);
         gridButtons[7][7].setText("?");
         rooms.add(new Room("?", 6, 9, 6, 9));
+        rooms.add(new Room("?", 6, 9, 6, 9));
         
         createRoomFromButtons(6, 9, 12, 15);
         gridButtons[7][13].setText("BILLIARD ROOM");

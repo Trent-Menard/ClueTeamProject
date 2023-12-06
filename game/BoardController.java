@@ -37,6 +37,7 @@ public class BoardController implements ActionListener {
 
     public void randomizeWeapons() {
         List<Integer> xPlacementCoords = new ArrayList<>();
+        
         xPlacementCoords.add(0);
         xPlacementCoords.add(1);
         xPlacementCoords.add(2);
@@ -46,7 +47,8 @@ public class BoardController implements ActionListener {
         xPlacementCoords.add(12);
         xPlacementCoords.add(13);
         xPlacementCoords.add(14);
-
+        
+       
         List<Integer> yPlacementCoords = new ArrayList<>(xPlacementCoords);
 
         Random random = new Random();
@@ -72,7 +74,7 @@ public class BoardController implements ActionListener {
 
             randomYIdx = random.nextInt(yPlacementCoords.size());
             randomY = yPlacementCoords.get(randomYIdx);
-
+          
             weapon = new Weapon(weaponNames.get(i), randomX, randomY);
             weapons.add(weapon);
 
