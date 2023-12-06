@@ -12,6 +12,7 @@ public class GameClient extends AbstractClient {
 	private CreateAccountControl createAccountControl;
 	private WaitingRoomControl waitingRoomControl;
 	private BoardPanel boardPanel;
+	private BoardController boardController;
 	private Player player;
 
 	public GameClient() {
@@ -65,8 +66,13 @@ public class GameClient extends AbstractClient {
 			this.waitingRoomControl.updateStatusMsg(dataNeededForClient.getPlayersReady() + "/" + dataNeededForClient.getPlayersNeededToStart() + " players needed to start");
 		}
 
-		else if (msg instanceof BoardPanel boardPanel2) {
-			this.boardPanel = boardPanel2;
+		else if (msg instanceof BoardData boardData) {
+			this.boardController.setBoardData(boardData);
+			this.boardController.getBoardPanel().setBoardData(boardData);
+			this.boardController.getBoardPanel().drawWeapons();
+			this.boardController.getBoardPanel().drawPlayerPositions();
+
+			this.boardPanel = boardController.getBoardPanel();
 			this.boardPanel.setVisible(true);
 		}
 
@@ -94,5 +100,9 @@ public class GameClient extends AbstractClient {
 
 	public void setBoardPanel(BoardPanel boardPanel) {
 		this.boardPanel = boardPanel;
+	}
+
+	public void setBoardControl(BoardController bc) {
+		this.boardController = bc;
 	}
 }
