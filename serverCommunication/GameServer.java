@@ -177,8 +177,46 @@ public class GameServer extends AbstractServer {
 			else {
 				database.addUser(createAccountData.getUsername(), createAccountData.getPassword());
 
-				try {
-					System.out.println("Successfully created account!");
+                try {
+                    System.out.println("Successfully created account!");
+                    
+                    Player player = new Player(createAccountData.getUsername(), createAccountData.getPassword());
+                    gameManager.assignPlayerCharacter(player);
+                    gameManager.setPlayersReady(gameManager.getPlayersReady() + 1);
+                    gameManager.createPlayerDecks();
+                    gameManager.assignPlayerDeck(player);
+                    gameManager.addPlayer(player);
+                    createAccountData.setPlayer(player);
+                    connectionToClient.sendToClient(createAccountData);
+                    System.out.println("User's ID is: " + database.getUserID(createAccountData.getUsername()));
+                    System.out.println("Players ready: " + gameManager.getPlayersReady() + "/" + gameManager.getNumOfPlayersNeededToStart());
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
+            }
+//            if(gameManager.getPlayersReady() == gameManager.getNumOfPlayersNeededToStart()) {
+//            	code for start game?
+//            }
+        }
+        else if (object instanceof WaitingRoomData waitingRoomData) {
+        	
+        }
+        
+        else if (object instanceof PlayerTurnData playerTurn)
+        {
+        	if (playerTurn.getTurnType().equals("Roll Dice"))
+        	{
+        	//Roll Dice
+        	playerTurn.setRoll(gameManager.rollDice());
+        	try {
+				connectionToClient.sendToClient(playerTurn);
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+        }
+        }
+    }
 
 					Player player = new Player(createAccountData.getUsername(), createAccountData.getPassword());
 					gameManager.assignPlayerCharacter(player);
