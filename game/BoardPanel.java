@@ -4,25 +4,27 @@ import javax.swing.*;
 import javax.swing.border.LineBorder;
 import javax.swing.plaf.basic.BasicButtonUI;
 import java.awt.*;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class BoardPanel extends JFrame {
+public class BoardPanel extends JFrame implements Serializable {
     private final int gridSize = 15;
     private final JButton[][] gridButtons = new JButton[gridSize][gridSize];
     private List<Room> rooms = new ArrayList<>();
-    private List<String> roomNames = new ArrayList<>();
-    public BoardPanel() {
-        this.roomNames.add("Kitchen");
-        this.roomNames.add("Ballroom");
-        this.roomNames.add("Conservatory");
-        this.roomNames.add("Dining Room");
-        this.roomNames.add("?");
-        this.roomNames.add("Billard Room");
-        this.roomNames.add("Lounge");
-        this.roomNames.add("Hall");
-        this.roomNames.add("Study");
 
+    private BoardData boardData;
+//    private List<String> roomNames = new ArrayList<>();
+    public BoardPanel() {
+//        this.roomNames.add("Kitchen");
+//        this.roomNames.add("Ballroom");
+//        this.roomNames.add("Conservatory");
+//        this.roomNames.add("Dining Room");
+//        this.roomNames.add("?");
+//        this.roomNames.add("Billard Room");
+//        this.roomNames.add("Lounge");
+//        this.roomNames.add("Hall");
+//        this.roomNames.add("Study");
         createBoard();
         createRooms();
         setVisible(true);
@@ -123,6 +125,31 @@ public class BoardPanel extends JFrame {
         for (Weapon weapon : weapons) {
             ImageIcon ii = new ImageIcon("resources/weapons/Small" + weapon.getCardName() + ".png");
             gridButtons[weapon.getXcoord()][weapon.getYcoord()].setIcon(ii);
+        }
+    }
+
+    public void drawWeapons() {
+        for (Weapon weapon : this.boardData.getWeapons()) {
+            ImageIcon ii = new ImageIcon("resources/weapons/Small" + weapon.getCardName() + ".png");
+            gridButtons[weapon.getXcoord()][weapon.getYcoord()].setIcon(ii);
+        }
+    }
+
+    public void setBoardData(BoardData boardData) {
+        this.boardData = boardData;
+    }
+
+    public void drawPlayerPositions() {
+        for (Player character : this.boardData.getPlayers()) {
+            System.out.println(character.getCharacter());
+            switch (character.getCharacter()) {
+                case "Dr. Orchid" -> this.getGridButtons()[0][4].setBackground(Color.PINK);
+                case "Reverend Green" -> this.getGridButtons()[0][10].setBackground(Color.GREEN);
+                case "Mrs. Peacock" -> this.getGridButtons()[4][14].setBackground(Color.BLUE);
+                case "Professor Plum" -> this.getGridButtons()[10][14].setBackground(new Color(128, 0, 128));
+                case "Miss Scarlet" -> this.getGridButtons()[14][4].setBackground(Color.RED);
+                case "Colonel Mustard" -> this.getGridButtons()[10][0].setBackground(Color.YELLOW);
+            }
         }
     }
 }

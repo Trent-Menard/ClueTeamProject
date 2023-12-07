@@ -10,7 +10,7 @@ public class ConnectToServerControl implements ActionListener {
 	private final JPanel container;
 	private final GameClient client;
 	
-	ConnectToServerControl(JPanel container, GameClient client){
+	public ConnectToServerControl(JPanel container, GameClient client){
 		this.container = container;
 		this.client = client;
 	}

@@ -17,8 +17,8 @@ public class ClientGUI extends JFrame {
 
         BoardPanel bp = new BoardPanel();
         BoardController bc = new BoardController(bp, client);
-        bp.setVisible(true);
         // Not until game starts
+        bp.setVisible(false);
 
         // Create the card layout container.
         CardLayout cardLayout = new CardLayout();
@@ -34,6 +34,7 @@ public class ClientGUI extends JFrame {
 		client.setLoginControl(lc);
 		client.setCreateAccountControl(cac);
         client.setWaitingRoomControl(wrc);
+        client.setBoardControl(bc);
 
         // Create the Views
 		JPanel view1 = new ConnectToServerPanel(ipc);

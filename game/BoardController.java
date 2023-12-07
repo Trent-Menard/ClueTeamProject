@@ -87,42 +87,22 @@ public class BoardController implements ActionListener {
         }
 
         boardPanel.drawWeapons(weapons);
-        setPlayerPositions();
+//        setPlayerPositions();
     }
 
-    public void setPlayerPositions() {
-        for (Player character : this.boardData.getPlayers()) {
-            switch (character.getCharacter()) {
-                case "Dr. Orchid" -> boardPanel.getGridButtons()[0][4].setBackground(Color.PINK);
-                case "Reverend Green" -> boardPanel.getGridButtons()[0][10].setBackground(Color.GREEN);
-                case "Mrs. Peacock" -> boardPanel.getGridButtons()[4][14].setBackground(Color.BLUE);
-                case "Professor Plum" -> boardPanel.getGridButtons()[10][14].setBackground(new Color(128, 0, 128));
-                case "Miss Scarlet" -> boardPanel.getGridButtons()[14][4].setBackground(Color.RED);
-                case "Colonel Mustard" -> boardPanel.getGridButtons()[10][0].setBackground(Color.YELLOW);
-            }
-
-//            if (character.getCharacter().equals("Dr. Orchid")) {
-//                boardPanel.getGridButtons()[0][4].setBackground(Color.PINK);
-//                //ImageIcon orchid = new ImageIcon("Dr Orchid.png");
+//    public void setPlayerPositions() {
+//        for (Player character : this.boardData.getPlayers()) {
+//            System.out.println(character.getCharacter());
+//            switch (character.getCharacter()) {
+//                case "Dr. Orchid" -> boardPanel.getGridButtons()[0][4].setBackground(Color.PINK);
+//                case "Reverend Green" -> boardPanel.getGridButtons()[0][10].setBackground(Color.GREEN);
+//                case "Mrs. Peacock" -> boardPanel.getGridButtons()[4][14].setBackground(Color.BLUE);
+//                case "Professor Plum" -> boardPanel.getGridButtons()[10][14].setBackground(new Color(128, 0, 128));
+//                case "Miss Scarlet" -> boardPanel.getGridButtons()[14][4].setBackground(Color.RED);
+//                case "Colonel Mustard" -> boardPanel.getGridButtons()[10][0].setBackground(Color.YELLOW);
 //            }
-//            if (character.getCharacter().equals("Reverend Green")) {
-//                boardPanel.getGridButtons()[0][10].setBackground(Color.GREEN);
-//            }
-//            if (character.getCharacter().equals("Mrs. Peacock")) {
-//                boardPanel.getGridButtons()[4][14].setBackground(Color.BLUE);
-//            }
-//            if (character.getCharacter().equals("Professor Plum")) {
-//                boardPanel.getGridButtons()[10][14].setBackground(new Color(128, 0, 128));
-//            }
-//            if (character.getCharacter().equals("Miss Scarlet")) {
-//                boardPanel.getGridButtons()[14][4].setBackground(Color.RED);
-//            }
-//            if (character.getCharacter().equals("Colonel Mustard")) {
-//                boardPanel.getGridButtons()[10][0].setBackground(Color.YELLOW);
-//            }
-
-        }
-    }
+//        }
+//    }
 
     public void setBoardData(BoardData bd) {
         this.boardData = bd;
@@ -132,5 +112,9 @@ public class BoardController implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         boardPanel.getGridButtons()[row][col].setBackground(Color.RED);
         JOptionPane.showMessageDialog(boardPanel, "Clicked on cell (" + row + ", " + col + ")");
+    }
+
+    public BoardPanel getBoardPanel() {
+        return boardPanel;
     }
 }

@@ -14,6 +14,9 @@ public class GameManager {
     private final List<Player> players = new ArrayList<>();
     private List<Suspect> suspects;
     List<Deck> originalPlayerDecks = new ArrayList<>();
+    private List<Player> playersCopy = new ArrayList<>();
+    private Player currentPlayerTurn;
+    private int counterForTurns = 0;
 
     public GameManager() {
         this.deck = new Deck();
@@ -83,7 +86,7 @@ public class GameManager {
     }
     
     // Function to simulate rolling a six-sided die
-    public static int rollDice() {
+    public int rollDice() {
         Random random = new Random();
         // Generate a random number between 1 and 6 (inclusive) for a standard six-sided die
         return random.nextInt(6) + 1;
@@ -91,5 +94,20 @@ public class GameManager {
 
     public List<Player> getPlayers() {
         return this.players;
+    }
+    public List<Player> getPlayerOrder(){
+    	return playersCopy;
+    }
+    public Player whoseTurnIsIt() {
+    	Player myTurn;
+    	myTurn = getPlayerOrder().get(counterForTurns % 6);
+    	counterForTurns++;
+    	return myTurn;
+    }
+    public void determinePlayerOrder(List<Player> playerList) {
+    	for(Player each : playerList) {
+    		playersCopy.add(each);
+    	}
+    	Collections.shuffle(playersCopy);
     }
 }
