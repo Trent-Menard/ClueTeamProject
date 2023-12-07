@@ -110,4 +110,17 @@ public class GameManager {
     	}
     	Collections.shuffle(playersCopy);
     }
+
+    public void handlePrePlayerJoin(Player player) {
+
+        // Only create player decks once.
+        if (playersReady == 0) {
+            createPlayerDecks();
+        }
+
+        assignPlayerCharacter(player);
+        setPlayersReady(getPlayersReady() + 1);
+        assignPlayerDeck(player);
+        addPlayer(player);
+    }
 }
