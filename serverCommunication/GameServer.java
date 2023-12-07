@@ -36,6 +36,7 @@ public class GameServer extends AbstractServer {
 	//    private BoardController boardController;
 	private BoardData boardData;
 	private DataNeededForClient dataNeededForClient;
+	private List<String> currentAccusation = new ArrayList<String>();
 
 	// Constructor for initializing the server with default settings.
 	public GameServer() {
@@ -219,11 +220,10 @@ public class GameServer extends AbstractServer {
 			boolean isFinal = accusationData.isFinal();
 			List<Card> envelope = gameManager.getDeck().getEnvelope();
 			int matches = 0;
-			List<String> accusation = new ArrayList<String>();
-			accusation.add(accusationData.getRoom());
-			accusation.add(accusationData.getSuspect());
-			accusation.add(accusationData.getWeapon());
-			for(String each : accusation) {
+			currentAccusation.add(accusationData.getRoom());
+			currentAccusation.add(accusationData.getSuspect());
+			currentAccusation.add(accusationData.getWeapon());
+			for(String each : currentAccusation) {
 				for(int j = 0; j < envelope.size(); j++) {
 					if(each.equals(envelope.get(j).getCardName())) {
 						matches++;
@@ -237,14 +237,27 @@ public class GameServer extends AbstractServer {
 				//KILL HIM
 			}
 			else if (!isFinal){
-				//Time to attempt to gather intel
+				//Tell Client theyre allowed to gather intel? gatherIntelControl automatically
+				//Sends them to gatherIntelPanel if they don't select isFinal
 			}
 		}
 		else if (object instanceof GatherIntelData intelData) {
+			Player playerToGatherIntelFrom = null;
 			String playerWeWantIntelFrom = intelData.getPlayer();
 			for (Player each : gameManager.getPlayers()) {
 				if(each.getCharacter().equals(playerWeWantIntelFrom)) {
-
+					playerToGatherIntelFrom = each;
+				}
+			}
+			if(!playerToGatherIntelFrom.equals(null)) {
+				List<Card> hand = playerToGatherIntelFrom.getPlayerHand();
+				weGotCard:
+				for(Card each : hand) {
+					for(int i = 0; i < currentAccusation.size(); i++) {
+						if(each.getCardName().equals(currentAccusation.get(i))) {
+							break weGotCard;
+						}
+					}
 				}
 			}
 		}
