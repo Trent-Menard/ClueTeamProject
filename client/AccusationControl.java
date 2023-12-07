@@ -17,6 +17,8 @@ public class AccusationControl implements ActionListener{
 
 	public void actionPerformed(ActionEvent e) {
 		String command = e.getActionCommand();
+		CardLayout cardLayout = (CardLayout) container.getLayout();
+
 		if(command.equals("Confirm")) {
 			AccusationPanel ap = (AccusationPanel)container.getComponent(View.ACCUSATION_PANEL.ordinal());
 			String weapon = ap.getWeapon();
@@ -34,9 +36,15 @@ public class AccusationControl implements ActionListener{
 					e1.printStackTrace();
 				}
 			}
+			if(!isFinal) {
+				cardLayout.show(container, View.GATHER_INTEL.name());
+			}
+			else {
+				cardLayout.show(container, View.PLAYER_TURN.name());
+			}
 		}
 		else if(command.equals("Cancel")) {
-			CardLayout cardLayout = (CardLayout)container.getLayout();
+			cardLayout = (CardLayout)container.getLayout();
 			cardLayout.show(container, View.PLAYER_TURN.name());
 		}
 		else {

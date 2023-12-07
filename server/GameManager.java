@@ -15,6 +15,8 @@ public class GameManager {
     private List<Suspect> suspects;
     List<Deck> originalPlayerDecks = new ArrayList<>();
     private List<Player> playersCopy = new ArrayList<>();
+    private Player currentPlayerTurn;
+    private int counterForTurns = 0;
 
     public GameManager() {
         this.deck = new Deck();
@@ -95,6 +97,12 @@ public class GameManager {
     }
     public List<Player> getPlayerOrder(){
     	return playersCopy;
+    }
+    public Player whoseTurnIsIt() {
+    	Player myTurn;
+    	myTurn = getPlayerOrder().get(counterForTurns % 6);
+    	counterForTurns++;
+    	return myTurn;
     }
     public void determinePlayerOrder(List<Player> playerList) {
     	for(Player each : playerList) {
