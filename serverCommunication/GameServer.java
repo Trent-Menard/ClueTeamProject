@@ -134,6 +134,8 @@ public class GameServer extends AbstractServer {
 
                     connectionToClient.sendToClient(loginData);
                     connectionToClient.sendToClient(dataNeededForClient);
+                    connectionToClient.sendToClient(player);
+
                 } catch (IOException e) {
                     throw new RuntimeException(e);
                 }
@@ -197,6 +199,8 @@ public class GameServer extends AbstractServer {
 
                     connectionToClient.sendToClient(createAccountData);
                     connectionToClient.sendToClient(dataNeededForClient);
+                    connectionToClient.sendToClient(player);
+
                 } catch (IOException e) {
                     throw new RuntimeException(e);
                 }
