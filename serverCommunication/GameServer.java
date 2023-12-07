@@ -252,13 +252,13 @@ public class GameServer extends AbstractServer {
 			if(!playerToGatherIntelFrom.equals(null)) {
 				List<Card> hand = playerToGatherIntelFrom.getPlayerHand();
 				weGotCard:
-				for(Card each : hand) {
-					for(int i = 0; i < currentAccusation.size(); i++) {
-						if(each.getCardName().equals(currentAccusation.get(i))) {
-							break weGotCard;
+					for(Card each : hand) {
+						for(int i = 0; i < currentAccusation.size(); i++) {
+							if(each.getCardName().equals(currentAccusation.get(i))) {
+								break weGotCard;
+							}
 						}
 					}
-				}
 			}
 		}
 	}
